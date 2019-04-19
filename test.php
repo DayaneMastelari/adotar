@@ -1,20 +1,23 @@
 <?php
 /**
- * The Front Controller for handling every request
+ * Web Access Frontend for TestSuite
  *
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
+ * CakePHP(tm) Tests <https://book.cakephp.org/2.0/en/development/testing.html>
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
  *
  * Licensed under The MIT License
  * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
+ * Redistributions of files must retain the above copyright notice
  *
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
+ * @link          https://book.cakephp.org/2.0/en/development/testing.html
  * @package       app.webroot
- * @since         CakePHP(tm) v 0.2.9
+ * @since         CakePHP(tm) v 1.2.0.4433
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+
+set_time_limit(0);
+ini_set('display_errors', 1);
 
 /**
  * Use the DS to separate the directories in other defines
@@ -40,7 +43,7 @@ if (!defined('ROOT')) {
  * The actual directory name for the "app".
  */
 if (!defined('APP_DIR')) {
-	define('APP_DIR', 'apps' . DS . 'adotar');
+	define('APP_DIR', 'apps'. DS . 'adotar');
 }
 
 /**
@@ -51,18 +54,15 @@ if (!defined('CONFIG')) {
 }
 
 /**
- * The absolute path to the "cake" directory, WITHOUT a trailing DS.
- *
- * Un-comment this line to specify a fixed path to CakePHP.
- * This should point at the directory containing `Cake`.
+ * The absolute path to the "Cake" directory, WITHOUT a trailing DS.
  *
  * For ease of development CakePHP uses PHP's include_path. If you
- * cannot modify your include_path set this value.
+ * need to cannot modify your include_path, you can set this path.
  *
  * Leaving this constant undefined will result in it being defined in Cake/bootstrap.php
  *
  * The following line differs from its sibling
- * /lib/Cake/Console/Templates/skel/webroot/index.php
+ * /lib/Cake/Console/Templates/skel/webroot/test.php
  */
 define('CAKE_CORE_INCLUDE_PATH', ROOT . DS . 'cake' . DS . 'lib');
 
@@ -77,7 +77,7 @@ if (!defined('CAKE_CORE_INCLUDE_PATH') && file_exists($vendorPath . DS . $dispat
 }
 
 /**
- * Editing below this line should NOT be necessary.
+ * Editing below this line should not be necessary.
  * Change at your own risk.
  */
 if (!defined('WEBROOT_DIR')) {
@@ -87,14 +87,6 @@ if (!defined('WWW_ROOT')) {
 	define('WWW_ROOT', dirname(__FILE__) . DS);
 }
 
-// For the built-in server
-if (PHP_SAPI === 'cli-server') {
-	if ($_SERVER['PHP_SELF'] !== '/' . basename(__FILE__) && file_exists(WWW_ROOT . $_SERVER['PHP_SELF'])) {
-		return false;
-	}
-	$_SERVER['PHP_SELF'] = '/' . basename(__FILE__);
-}
-
 if (!defined('CAKE_CORE_INCLUDE_PATH')) {
 	if (function_exists('ini_set')) {
 		ini_set('include_path', ROOT . DS . 'lib' . PATH_SEPARATOR . ini_get('include_path'));
@@ -102,17 +94,19 @@ if (!defined('CAKE_CORE_INCLUDE_PATH')) {
 	if (!include 'Cake' . DS . 'bootstrap.php') {
 		$failed = true;
 	}
-} elseif (!include CAKE_CORE_INCLUDE_PATH . DS . 'Cake' . DS . 'bootstrap.php') {
-	$failed = true;
+} else {
+	if (!include CAKE_CORE_INCLUDE_PATH . DS . 'Cake' . DS . 'bootstrap.php') {
+		$failed = true;
+	}
 }
 if (!empty($failed)) {
-	trigger_error("CakePHP core could not be found. Check the value of CAKE_CORE_INCLUDE_PATH in APP/webroot/index.php. It should point to the directory containing your " . DS . "cake core directory and your " . DS . "vendors root directory.", E_USER_ERROR);
+	trigger_error("CakePHP core could not be found. Check the value of CAKE_CORE_INCLUDE_PATH in APP/webroot/test.php. It should point to the directory containing your " . DS . "cake core directory and your " . DS . "vendors root directory.", E_USER_ERROR);
 }
 
-App::uses('Dispatcher', 'Routing');
+if (Configure::read('debug') < 1) {
+	throw new NotFoundException(__d('cake_dev', 'Debug setting does not allow access to this URL.'));
+}
 
-$Dispatcher = new Dispatcher();
-$Dispatcher->dispatch(
-	new CakeRequest(),
-	new CakeResponse()
-);
+require_once CAKE . 'TestSuite' . DS . 'CakeTestSuiteDispatcher.php';
+
+CakeTestSuiteDispatcher::run();
