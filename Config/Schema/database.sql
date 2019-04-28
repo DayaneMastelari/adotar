@@ -5,7 +5,7 @@ CREATE TABLE usuarios (
   celular varchar(14) DEFAULT NULL,
   cpf varchar(14) DEFAULT NULL,
   nascimento datetime DEFAULT NULL,
-  estado varchar(2) DEFAULT NULL,
+  estado varchar(100) DEFAULT NULL,
   cep varchar(10) DEFAULT NULL,
   cidade varchar(100) DEFAULT NULL,
   bairro varchar(100) DEFAULT NULL,
