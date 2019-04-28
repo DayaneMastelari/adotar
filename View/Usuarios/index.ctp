@@ -4,7 +4,7 @@ $detalhe = array();
 foreach($usuarios as $usuario){
     $detalhe[] = array(
         $usuario['Usuario']['nome'],
-        $usuario['Usuario']['nascimento'],
+        date('d/m/Y', strtotime($usuario['Usuario']['nascimento'])),
         $usuario['Usuario']['email'],
     );
 }

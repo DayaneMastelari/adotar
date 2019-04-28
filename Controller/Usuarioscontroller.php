@@ -12,7 +12,13 @@ class UsuariosController extends AppController {
     }
 
     public function add(){
-        
+        if(!empty($this->request->data)){
+            $this->Usuario->create();
+            if($this->Usuario->save($this->request->data)){
+                $this->Flash->set('Cadastro realizado com sucesso');
+                $this->redirect('/usuarios');
+            }
+        }
     }
 }
 
