@@ -35,6 +35,12 @@ class UsuariosController extends AppController {
         }
     }
 
+    public function view($id = null){
+        $fields = array('Usuario.id', 'Usuario.nome', 'Usuario.celular', 'Usuario.cpf','Usuario.nascimento', 'Usuario.estado', 'Usuario.cep', 'Usuario.cidade', 'Usuario.bairro', 'Usuario.endereco', 'Usuario.numero', 'Usuario.email', 'Usuario.senha',);
+        $conditions = array('Usuario.id' => $id);
+        $this->request->data = $this->Usuario->find('first', compact('fields', 'conditions'));
+    }
+
     public function delete($idUsuario){
         $this->Usuario->delete($idUsuario);
         $this->Flash->set('Usuario excluido com sucesso!');

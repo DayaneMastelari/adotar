@@ -4,8 +4,9 @@ $detalhe = array();
 foreach($usuarios as $usuario){
     $editLink = $this->Html->link('Alterar', '/usuarios/edit/' . $usuario['Usuario']['id']);
     $deleteLink = $this->html->link('Excluir', '/usuarios/delete/' . $usuario['Usuario']['id']);
+    $viewLink = $this->html->link($usuario['Usuario']['nome'], '/usuarios/view/' . $usuario['Usuario']['id']);
     $detalhe[] = array(
-        $usuario['Usuario']['nome'],
+        $viewLink,
         date('d/m/Y', strtotime($usuario['Usuario']['nascimento'])),
         $usuario['Usuario']['email'],
         $editLink . ' ' . $deleteLink
