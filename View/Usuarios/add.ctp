@@ -1,13 +1,26 @@
 <?php
 
 $form = $this->Form->create('Usuario');
-$form .= $this->Form->input('Usuario.nome');
-$form .= $this->Form->input('Usuario.celular');
+$form .= $this->Form->input('Usuario.nome', array(
+    'required' => false,
+    'label' => false,
+    'placeholder' => 'Nome'
+));
+$form .= $this->Form->input('Usuario.celular', array(
+    'required' => false,
+    'label' => false,
+    'placeholder' => 'Celular'
+));
 $form .= $this->Form->input('Usuario.cpf', array(
-    'text' => 'CPF'
+    'required' => false,
+    'label' => false,
+    'placeholder' => 'CPF'
 ));
 $form .= $this->Form->input('Usuario.nascimento', array(
-    'type' => 'text'
+    'type' => 'text',
+    'required' => false,
+    'label' => false,
+    'placeholder' => 'Nascimento'
 ));
 $form .= $this->Form->input('Usuario.estado', array(
     'type' => 'select',
@@ -39,19 +52,47 @@ $form .= $this->Form->input('Usuario.estado', array(
         'SSão PauloP' => 'São Paulo',
         'Sergipe' => 'Sergipe',
         'Tocantins' => 'Tocantins' 
-    )
+    ),
+    'required' => false,
+    'label' => false,
+    'empty' => 'estado'
 ));
 $form .= $this->Form->input('Usuario.cep', array(
-    'text' => 'CEP'
+    'required' => false,
+    'label' => false,
+    'placeholder' => 'CEP'
 ));
-$form .= $this->Form->input('Usuario.cidade');
-$form .= $this->Form->input('Usuario.bairro');
+$form .= $this->Form->input('Usuario.cidade', array(
+    'required' => false,
+    'label' => false,
+    'placeholder' => 'Cidade'
+));
+$form .= $this->Form->input('Usuario.bairro', array(
+    'required' => false,
+    'label' => false,
+    'placeholder' => 'Bairro'
+));
 $form .= $this->Form->input('Usuario.endereco', array(
-    'text' => 'Endereço'
+    'required' => false,
+    'label' => false,
+    'placeholder' => 'Endereço'
 ));
-$form .= $this->Form->input('Usuario.numero');
-$form .= $this->Form->input('Usuario.email');
-$form .= $this->Form->input('Usuario.senha');
+$form .= $this->Form->input('Usuario.numero', array(
+    'required' => false,
+    'label' => false,
+    'placeholder' => 'Número'
+));
+$form .= $this->Form->input('Usuario.email', array(
+    'required' => false,
+    'label' => false,
+    'placeholder' => 'Email'
+));
+$form .= $this->Form->input('Usuario.senha', array(
+    'required' => false,
+    'label' => false,
+    'placeholder' => 'Senha',
+    'type' => 'password'
+));
 $form .= $this->Form->end('Gravar');
 
 echo $this->Html->tag('h1', 'Novo Usuário');
