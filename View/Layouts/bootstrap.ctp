@@ -44,12 +44,13 @@
             <?php 
                 echo $this->Flash->render();
                 echo $this->fetch('content');                              
-            ?>  
-            <img src="/adotar/img/pata.png" class="imgPata">
+            ?> 
         </main>
         <?php 
             echo $this->Html->script('jquery-3.4.1.min.js');
             echo $this->Html->script('bootstrap.bundle.min.js');            
-        ?>        
+        ?>  
+        
+</div>      
     </body>
 </html>

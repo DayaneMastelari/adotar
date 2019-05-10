@@ -1,5 +1,6 @@
 <?php
 $form = $this->Form->create('Usuario');
+
 $form .= $this->Html->div('form-row mt-4',
     $this->Form->input('Usuario.nome', array(
         'required' => false,
@@ -135,10 +136,12 @@ $form .= $this->Html->div('form-row mb-4',
 );
 
 $form .= $this->Form->button('Gravar', array('type' => 'submit', 'class' => 'btn btn-success mr-2'));
-$form .= $this->Html->link('Voltar', '/usuarios', array('class' => 'btn btn-secondary'));
+$form .= $this->Html->link('Cancela', '/cinema', array('class' => 'btn btn-secondary'));
 $form .= $this->Form->end();
 
-echo $this->Html->tag('h1', 'Novo Usuário');
-echo $form;
+echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
+    $this->Html->tag('h1', 'Novo Usuário') .
+    $form
+);
 
 ?>
