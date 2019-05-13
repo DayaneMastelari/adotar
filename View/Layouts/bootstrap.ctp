@@ -13,7 +13,7 @@
 
     </head>
     <body>
-        <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+        <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color: #3385ff;>
             <a class="navbar-brand" href="#">Adotar Faz Bem</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -21,17 +21,16 @@
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <?php echo $this->Html->link('Ongs', '/filmes', array('class' => 'nav-link')); ?>
+                        <?php echo $this->Html->link('Ongs', '/filmes', array('class' => 'nav-link nav-color-text')); ?>
                     </li>
-
                     <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Adotar</a>
+                      <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" color="white">Adotar</a>
                       <div class="dropdown-menu" aria-labelledby="dropdown01">
                         <a class="dropdown-item" href="#">Cachorros</a>
                         <a class="dropdown-item" href="#">Gatos</a>
                         <a class="dropdown-item" href="#">Outros</a>
                       </div>
-                    </li>            
+                    </li>          
                 </ul>
                 <form class="form-inline my-2 my-lg-0">                  
                   <?php echo $this->Html->link('Login', '/generos', array('class' => 'btn btn-outline-light my-2 my-sm-0'));?>
@@ -50,7 +49,6 @@
             echo $this->Html->script('jquery-3.4.1.min.js');
             echo $this->Html->script('bootstrap.bundle.min.js');            
         ?>  
-        
 </div>      
     </body>
 </html>
