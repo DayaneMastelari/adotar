@@ -5,7 +5,7 @@ class AdotarsController extends AppController {
 
     public $layout = 'landingPage';
 
-    public function display() {
+    public function index() {
 
 	}
 
