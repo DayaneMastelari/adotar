@@ -1,6 +1,5 @@
 <?php
 $form = $this->Form->create('Usuario');
-
 $form .= $this->Html->div('form-row mt-4',
     $this->Form->input('Usuario.nome', array(
         'required' => false,
