@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <?php echo $this->Html->link('Ongs', '/filmes', array('class' => 'nav-link nav-color-text')); ?>
+                        <?php echo $this->Html->link('Ongs', '/ongs', array('class' => 'nav-link nav-color-text')); ?>
                     </li>
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" color="white">Adotar</a>
@@ -39,7 +39,7 @@
             </div>
         </nav>
 
-        <main role="main" class="container">
+        <main role="main" class="container" id="content">
             <?php 
                 echo $this->Flash->render();
                 echo $this->fetch('content');                              
@@ -47,7 +47,8 @@
         </main>
         <?php 
             echo $this->Html->script('jquery-3.4.1.min.js');
-            echo $this->Html->script('bootstrap.bundle.min.js');            
+            echo $this->Html->script('bootstrap.bundle.min.js'); 
+            echo $this->Js->writeBuffer();           
         ?>  
 </div>      
     </body>

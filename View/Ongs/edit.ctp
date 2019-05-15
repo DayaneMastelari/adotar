@@ -1,43 +1,46 @@
 <?php
-$form = $this->Form->create('Usuario');
-$form .= $this->Form->hidden('Usuario.id');
+$form = $this->Form->create('Ongs');
+$form .= $this->Form->hidden('Ong.id');
 $form .= $this->Html->div('form-row mt-4',
-    $this->Form->input('Usuario.nome', array(
+    $this->Form->input('Ong.razao_social', array(
         'required' => false,
         'label' => false,
-        'placeholder' => 'Nome',
+        'placeholder' => 'Razao Social',
         'div' => array('class' => 'form-group col-md-6'),
         'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
     )) . 
-    $this->Form->input('Usuario.celular', array(
+    $this->Form->input('Ong.fantasia', array(
         'required' => false,
         'label' => false,
-        'placeholder' => 'Celular',
+        'placeholder' => 'Nome Fantasia',
         'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
     ))
 );
 
 $form .= $this->Html->div('form-row',
-    $this->Form->input('Usuario.cpf', array(
+    $this->Form->input('Ong.cnpj', array(
         'required' => false,
         'label' => false,
-        'placeholder' => 'CPF',
+        'placeholder' => 'CNPJ',
         'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
-    )) . 
-    $this->Form->input('Usuario.nascimento', array(
-        'type' => 'text',
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
+    )) .
+    $this->Form->input('Ong.telefone', array(
         'required' => false,
         'label' => false,
-        'placeholder' => 'Nascimento',
+        'placeholder' => 'Telefone',
         'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
     ))
 );
 
-$form .= $this->Html->div('form-row',
-    $this->Form->input('Usuario.estado', array(
+$form .= $this->Html->div('form-row', 
+    $this->Form->input('Ong.estado', array(
         'type' => 'select',
         'options' => array(
             'Acre' => 'Acre',
@@ -72,93 +75,78 @@ $form .= $this->Html->div('form-row',
         'label' => false,
         'empty' => 'Estado',
         'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
-    )) . 
-    $this->Form->input('Usuario.cep', array(
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
+    )) .
+    $this->Form->input('Ong.cep', array(
         'required' => false,
         'label' => false,
         'placeholder' => 'CEP',
         'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
     ))
 );
 
 $form .= $this->Html->div('form-row',
-    $this->Form->input('Usuario.cidade', array(
+    $this->Form->input('Ong.cidade', array(
         'required' => false,
         'label' => false,
         'placeholder' => 'Cidade',
         'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
-    )) . 
-    $this->Form->input('Usuario.bairro', array(
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
+    )) .
+    $this->Form->input('Ong.bairro', array(
         'required' => false,
         'label' => false,
         'placeholder' => 'Bairro',
         'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
     ))
 );
+
+$form .= $this->Form->input('Ong.endereco', array(
+    'required' => false,
+    'label' => false,
+    'placeholder' => 'Endereço',
+    'div' => array('class' => 'form-group'),
+    'class' => 'form-control',
+    'error' => array('attributes' => array('class' => 'invalid-feedback'))
+));
 
 $form .= $this->Html->div('form-row',
-    $this->Form->input('Usuario.endereco', array(
-        'required' => false,
-        'label' => false,
-        'placeholder' => 'Endereço',
-        'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
-    )) . 
-    $this->Form->input('Usuario.numero', array(
-        'required' => false,
-        'label' => false,
-        'placeholder' => 'Número',
-        'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
-    ))
-);
-
-$form .= $this->Html->div('form-row mb-4',
-    $this->Form->input('Usuario.email', array(
+    $this->Form->input('Ong.email', array(
         'required' => false,
         'label' => false,
         'placeholder' => 'Email',
         'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
-    )) . 
-    $this->Form->input('Usuario.usuario', array(
-        'required' => false,
-        'label' => false,
-        'placeholder' => 'Usuário',
-        'type' => 'password',
-        'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
-    ))
-);
-
-$form .= $this->Html->div('form-row mb-4',
-    $this->Form->input('Usuario.senha', array(
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
+    )) .
+    $this->Form->input('Ong.senha', array(
         'required' => false,
         'label' => false,
         'placeholder' => 'Senha',
         'type' => 'password',
         'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
-    )) . 
-    $this->Form->input('', array(
-        'required' => false,
-        'label' => false,
-        'placeholder' => 'Confirmar Senha',
-        'type' => 'password',
-        'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
     ))
 );
 
-$form .= $this->Form->button('Gravar', array('type' => 'submit', 'class' => 'btn btn-success mr-2'));
-$form .= $this->Html->link('Cancela', '/', array('class' => 'btn btn-secondary'));
+$form .= $this->Js->submit('Gravar', array('type' => 'submit', 'div' => false, 'class' => 'btn btn-success mr-2', 'update' => '#content'));
+$form .= $this->Js->link('Cancela', '/ongs', array('class' => 'btn btn-secondary', 'update' => '#content'));
 $form .= $this->Form->end();
 
-echo $this->Html->tag('h1', 'Novo Usuário');
-echo $form;
+echo $this->Html->tag('h1', 'Cadastro');
+echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
+    $form
+);
 
+$this->Js->buffer('$(".form-error").addClass("is-invalid")');
+if($this->request->is('ajax')) {
+    echo $this->Js->writeBuffer();
+}
 ?>

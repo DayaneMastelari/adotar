@@ -4,6 +4,8 @@ App::uses('AppController', 'Controller');
 class UsuariosController extends AppController {
 
     public $layout = 'bootstrap';
+    public $helper = array('Js' => array('Jquerry'));
+    public $components = array('RequestHandler');
     
     public function index(){
         $fields = array('Usuario.id', 'Usuario.nome', 'Usuario.nascimento', 'Usuario.email');

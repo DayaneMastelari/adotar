@@ -15,3 +15,19 @@ CREATE TABLE usuarios (
   senha varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE ongs (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  razao_social varchar(100) DEFAULT NULL,
+  cnpj varchar(14) DEFAULT NULL,
+  telefone varchar(14) DEFAULT NULL,  
+  estado varchar(100) DEFAULT NULL,
+  cep varchar(10) DEFAULT NULL,
+  cidade varchar(100) DEFAULT NULL,
+  bairro varchar(100) DEFAULT NULL,
+  endereco varchar(100) DEFAULT NULL,
+  numero int(11) DEFAULT NULL,
+  email varchar(100) DEFAULT NULL,
+  senha varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

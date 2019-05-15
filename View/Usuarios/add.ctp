@@ -8,13 +8,15 @@ $form .= $this->Html->div('form-row mt-4',
         'placeholder' => 'Nome',
         'div' => array('class' => 'form-group col-md-6'),
         'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
     )) . 
     $this->Form->input('Usuario.celular', array(
         'required' => false,
         'label' => false,
         'placeholder' => 'Celular',
         'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
     ))
 );
 
@@ -24,7 +26,8 @@ $form .= $this->Html->div('form-row',
         'label' => false,
         'placeholder' => 'CPF',
         'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
     )) . 
     $this->Form->input('Usuario.nascimento', array(
         'type' => 'text',
@@ -32,7 +35,8 @@ $form .= $this->Html->div('form-row',
         'label' => false,
         'placeholder' => 'Nascimento',
         'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
     ))
 );
 
@@ -72,14 +76,16 @@ $form .= $this->Html->div('form-row',
         'label' => false,
         'empty' => 'Estado',
         'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
     )) . 
     $this->Form->input('Usuario.cep', array(
         'required' => false,
         'label' => false,
         'placeholder' => 'CEP',
         'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
     ))
 );
 
@@ -89,41 +95,36 @@ $form .= $this->Html->div('form-row',
         'label' => false,
         'placeholder' => 'Cidade',
         'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
     )) . 
     $this->Form->input('Usuario.bairro', array(
         'required' => false,
         'label' => false,
         'placeholder' => 'Bairro',
         'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
     ))
 );
 
-$form .= $this->Html->div('form-row',
-    $this->Form->input('Usuario.endereco', array(
+$form .= $this->Form->input('Usuario.endereco', array(
         'required' => false,
         'label' => false,
         'placeholder' => 'Endereço',
-        'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
-    )) . 
-    $this->Form->input('Usuario.numero', array(
-        'required' => false,
-        'label' => false,
-        'placeholder' => 'Número',
-        'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
-    ))
-);
+        'div' => array('class' => 'form-group'),
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
+));
 
-$form .= $this->Html->div('form-row mb-4',
+$form .= $this->Html->div('form-row',
     $this->Form->input('Usuario.email', array(
         'required' => false,
         'label' => false,
         'placeholder' => 'Email',
         'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
     )) . 
     $this->Form->input('Usuario.senha', array(
         'required' => false,
@@ -131,17 +132,23 @@ $form .= $this->Html->div('form-row mb-4',
         'placeholder' => 'Senha',
         'type' => 'password',
         'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
     ))
 );
 
-$form .= $this->Form->button('Gravar', array('type' => 'submit', 'class' => 'btn btn-success mr-2'));
-$form .= $this->Html->link('Cancela', '/cinema', array('class' => 'btn btn-secondary'));
+$form .= $this->Js->submit('Gravar', array('type' => 'submit', 'div' => false, 'class' => 'btn btn-success mr-2', 'update' => '#content'));
+$form .= $this->Js->link('Cancela', '/', array('class' => 'btn btn-secondary', 'update' => '#content'));
 $form .= $this->Form->end();
 
+echo $this->Html->tag('h1', 'Cadastro');
 echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
-    $this->Html->tag('h1', 'Novo Usuário') .
     $form
 );
+
+$this->Js->buffer('$(".form-error").addClass("is-invalid")');
+if($this->request->is('ajax')) {
+    echo $this->Js->writeBuffer();
+}
 
 ?>
