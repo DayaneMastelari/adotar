@@ -27,8 +27,8 @@ class PetsController extends AppController {
 
     public function add(){
         if(!empty($this->request->data)){
-            debug($this->request->data);
-                exit();
+            move_uploaded_file($this->request->data['Pet']['foto']['tmp_name'], PATHFOTO . DS . 'foto_teste.jpg');
+            $this->request->data['Pet']['foto'] = 'foto_teste.jpg';
             $this->Pet->create();
             if($this->Pet->save($this->request->data)){
                 
