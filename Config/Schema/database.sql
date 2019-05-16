@@ -31,3 +31,27 @@ CREATE TABLE ongs (
   senha varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `pets` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `foto` varchar(100) DEFAULT NULL,
+  `nome` varchar(50) DEFAULT NULL,
+  `sex` varchar(1) DEFAULT NULL,  
+  `porte` varchar(25) DEFAULT NULL,
+  `cadastrado` varchar(1) DEFAULT NULL,
+  `vacinado` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `pets`
+  ADD `usuario_id` int(11) DEFAULT NULL,
+  ADD `ong_id` int(11) DEFAUT NULL;
+
+ALTER TABLE `pets`
+  ADD KEY `pet_usuario_fk` (`usuario_id`),
+  ADD KEY `pet_ong_fk` (`ong_id`);
+
+
+ALTER TABLE `pets`
+  ADD CONSTRAINT `pet_usuario_fk` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pet_ong_fk` FOREIGN KEY (`ong_id`) REFERENCES `ongs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;

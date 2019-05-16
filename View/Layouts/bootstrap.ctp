@@ -34,7 +34,7 @@
                 </ul>
                 <form class="form-inline my-2 my-lg-0">                  
                   <?php echo $this->Html->link('Login', '/generos', array('class' => 'btn btn-outline-light my-2 my-sm-0'));?>
-                  <?php echo $this->Html->link('Perfil', '/ators', array('class' => 'form-control btn btn-outline-light ml-2 mr-sm-2')); ?>       
+                  <?php echo $this->Html->link('Perfil', '/usuarios/id', array('class' => 'form-control btn btn-outline-light ml-2 mr-sm-2')); ?>       
                 </form>
             </div>
         </nav>
