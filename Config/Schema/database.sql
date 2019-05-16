@@ -36,9 +36,9 @@ CREATE TABLE `pets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `foto` varchar(100) DEFAULT NULL,
   `nome` varchar(50) DEFAULT NULL,
-  `sex` varchar(1) DEFAULT NULL,  
+  `sexo` varchar(1) DEFAULT NULL,  
   `porte` varchar(25) DEFAULT NULL,
-  `cadastrado` varchar(1) DEFAULT NULL,
+  `castrado` varchar(1) DEFAULT NULL,
   `vacinado` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
