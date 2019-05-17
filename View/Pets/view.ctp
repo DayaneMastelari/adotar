@@ -1,19 +1,42 @@
 <?php
-
+$view = '';
+$tumbnail = '';
+$linha = '';
 $adotarButton = $this->Html->link('Adotar', '/', array('class' => 'btn btn-sm btn-outline-secondary'));
-$imagem = $this->Html->image($this->request->data['Pet']['foto'], array('class' => 'bd-placeholder-img card-img-top'));
 
-$view = $this->Html->div('row',
-    $this->Html->div('col-md-4',
-        $this->Html->div('card mb-4 shadow-sm', $imagem .
-            $this->Html->div('card-body', 
-                $this->Html->para('card-text', $this->request->data['Pet']['porte']) .
-                $this->Html->div('d-flex justify-content-between align-items-center',
-                    $this->Html->div('btn-group', $adotarButton)
-                )
-            )
+$quantidadePorLinha = 0;
+
+foreach ($pets as $pet) {
+    $tumbnail .=  $this->Html->div('imagem',
+        $this->Html->image($pet['Pet']['foto'], array('class' => 'img-thumbnail'))
+    );
+    
+}
+
+/*$this->Html->div('card-body', 
+                    $this->Html->para('card-text', $pet['Pet']['porte'], array('class' => 'img-fluid')) .
+                    $this->Html->div('d-flex justify-content-between align-items-center',
+                        $this->Html->div('btn-group', $adotarButton)
+                    )
         )
-    )
-);
-echo $view;
+    
+                /*$this->Html->div('card-body', 
+                    $this->Html->para('card-text', $pet['Pet']['porte']) .
+                    $this->Html->div('d-flex justify-content-between align-items-center',
+                        $this->Html->div('btn-group', $adotarButton)
+                )
+                );*/
+
+    /*if ($quantidadePorLinha < 3) {
+            $linha .= $tumbnail;
+        if($quantidadePorLinha == 2 ) {
+            $view .= $this->Html->div('row', $linha);
+            $linha = '';
+            $quantidadePorLinha = -1;
+        }
+        $quantidadePorLinha++;
+    }*/
+
+
+echo $tumbnail;
 ?>

@@ -27,12 +27,12 @@ class PetsController extends AppController {
 
     public function add(){
         if(!empty($this->request->data)){
-            move_uploaded_file($this->request->data['Pet']['foto']['tmp_name'], PATHFOTO . DS . 'foto_teste.jpg');
-            $this->request->data['Pet']['foto'] = 'foto_teste.jpg';
+            move_uploaded_file($this->request->data['Pet']['foto']['tmp_name'], PATHFOTO . DS . $this->request->data['Pet']['foto']['name']);
+            $this->request->data['Pet']['foto'] = $this->request->data['Pet']['foto']['name'];
             $this->Pet->create();
             if($this->Pet->saveAll($this->request->data)){
                 $this->Flash->bootstrap('Cadastro realizado com sucesso', array('key' => 'success'));
-               $this->redirect('/');
+               //$this->redirect('/');
             }
         }
     }
@@ -43,10 +43,11 @@ class PetsController extends AppController {
         $this->redirect('/');
     }
 
-    public function view($id = null) {
+    public function view() {
         $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'pet.foto');
-        $conditions = array('Pet.id' => $id);
-        $this->request->data = $this->Pet->find('first', compact('fields', 'conditions'));
+        $pets = $this->Pet->find('all', compact('fields'));
+
+        $this->set('pets', $pets);
     }
 }
 
