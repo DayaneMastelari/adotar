@@ -44,6 +44,7 @@ class PetsController extends AppController {
     }
 
     public function view() {
+        $this->layout = 'landingPage';
         $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'pet.foto');
         $pets = $this->Pet->find('all', compact('fields'));
 
