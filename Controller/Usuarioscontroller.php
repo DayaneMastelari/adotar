@@ -5,7 +5,25 @@ class UsuariosController extends AppController {
 
     public $layout = 'bootstrap';
     public $helper = array('Js' => array('Jquerry'));
-    public $components = array('RequestHandler');
+    public $components = array(
+        'RequestHandler',
+        /*'Auth' => array(
+            'flash' => array('element' => 'bootstrap', 'params' => array('key' => 'warning'), 'key' => 'warning'),
+            'authError' => 'Você não possui permissão para acessar essa operação',
+            'loginAction' => '/login',
+            'loginRedirect' => '/',
+            'logoutRedirect' => '/login',
+            'authenticate' => array(
+                'Form' => array(
+                    'userModel' => 'Usuario',
+                    'fields' => array('username' => 'login', 'password' => 'senha'),
+                    'passwordHasher' => array('className' => 'Simple', 'hashType' => 'sha256')
+                )
+            ),
+            //'authorize' => array('Crud' => array('userModel' => 'Usuario'))
+        ),
+        //'Acl'*/
+    );
 
     public $paginate = array(
         'fields' => array('Usuario.id', 'Usuario.nome', 'Usuario.nascimento', 'Usuario.email'),
@@ -60,6 +78,25 @@ class UsuariosController extends AppController {
         $this->Flash->bootstrap('Usuario excluido com sucesso!', array('key' => 'warning'));
         $this->redirect('/usuarios');
 
+    }
+
+    public function login() {
+        $this->layout = 'login';
+        pr($this->request->data);
+        exit();
+        /*if ($this->request->is('post')) {
+            if ($this->Auth->login()) {
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Flash->bootstrap('Usuário ou senha incorretos', array('key' => 'danger'));
+            
+        }*/
+ 
+    }
+ 
+    public function logout() {
+        $this->Auth->logout();
+        $this->redirect('/login');
     }
 }
 

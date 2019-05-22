@@ -32,7 +32,7 @@ class PetsController extends AppController {
             $this->Pet->create();
             if($this->Pet->saveAll($this->request->data)){
                 $this->Flash->bootstrap('Cadastro realizado com sucesso', array('key' => 'success'));
-               //$this->redirect('/');
+                $this->redirect('/');
             }
         }
     }

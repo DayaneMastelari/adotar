@@ -4,7 +4,7 @@ $form .= $this->Html->div('form-row mt-4',
     $this->Form->input('Usuario.nome', array(
         'required' => false,
         'label' => false,
-        'placeholder' => 'Nome',
+        'placeholder' => 'Nome ou Razão Social',
         'div' => array('class' => 'form-group col-md-6'),
         'class' => 'form-control',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))
@@ -12,7 +12,7 @@ $form .= $this->Html->div('form-row mt-4',
     $this->Form->input('Usuario.celular', array(
         'required' => false,
         'label' => false,
-        'placeholder' => 'Celular',
+        'placeholder' => 'Telefone',
         'div' => array('class' => 'form-group col-md-6'),
         'class' => 'form-control',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))
@@ -23,23 +23,11 @@ $form .= $this->Html->div('form-row',
     $this->Form->input('Usuario.cpf', array(
         'required' => false,
         'label' => false,
-        'placeholder' => 'CPF',
+        'placeholder' => 'CPF ou CNPJ',
         'div' => array('class' => 'form-group col-md-6'),
         'class' => 'form-control',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))
-    )) . 
-    $this->Form->input('Usuario.nascimento', array(
-        'type' => 'text',
-        'required' => false,
-        'label' => false,
-        'placeholder' => 'Nascimento',
-        'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control',
-        'error' => array('attributes' => array('class' => 'invalid-feedback'))
-    ))
-);
-
-$form .= $this->Html->div('form-row',
+    )) .
     $this->Form->input('Usuario.estado', array(
         'type' => 'select',
         'options' => array(
@@ -77,7 +65,11 @@ $form .= $this->Html->div('form-row',
         'div' => array('class' => 'form-group col-md-6'),
         'class' => 'form-control',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))
-    )) . 
+    ))
+
+);
+
+$form .= $this->Html->div('form-row',
     $this->Form->input('Usuario.cep', array(
         'required' => false,
         'label' => false,
@@ -85,10 +77,7 @@ $form .= $this->Html->div('form-row',
         'div' => array('class' => 'form-group col-md-6'),
         'class' => 'form-control',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))
-    ))
-);
-
-$form .= $this->Html->div('form-row',
+    )) .
     $this->Form->input('Usuario.cidade', array(
         'required' => false,
         'label' => false,
@@ -96,7 +85,11 @@ $form .= $this->Html->div('form-row',
         'div' => array('class' => 'form-group col-md-6'),
         'class' => 'form-control',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))
-    )) . 
+    ))
+
+);
+
+$form .= $this->Html->div('form-row',
     $this->Form->input('Usuario.bairro', array(
         'required' => false,
         'label' => false,
@@ -104,17 +97,16 @@ $form .= $this->Html->div('form-row',
         'div' => array('class' => 'form-group col-md-6'),
         'class' => 'form-control',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))
-    ))
-);
-
-$form .= $this->Form->input('Usuario.endereco', array(
+    )) .
+    $this->Form->input('Usuario.endereco', array(
         'required' => false,
         'label' => false,
         'placeholder' => 'Endereço',
-        'div' => array('class' => 'form-group'),
+        'div' => array('class' => 'form-group col-md-6'),
         'class' => 'form-control',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))
-));
+    ))
+);
 
 $form .= $this->Html->div('form-row',
     $this->Form->input('Usuario.email', array(

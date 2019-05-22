@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 
 class Usuario extends AppModel {
 
@@ -7,6 +8,13 @@ class Usuario extends AppModel {
         if (!empty($this->data['Usuario']['nascimento'])) {
             $nascimento = str_replace('/', '-', $this->data['Usuario']['nascimento']);
             $this->data['Usuario']['nascimento'] = date('Y-m-d', strtotime($nascimento));
+        }
+
+        if (!empty($this->data['Usuario']['senha'])) {
+            $passwordHasher = new SimplePasswordHasher(array('hashType' => 'sha256'));
+            $this->data['Usuario']['senha'] = $passwordHasher->hash(
+                $this->data['Usuario']['senha']
+            );
         }
         
         return true;

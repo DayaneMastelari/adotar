@@ -9,21 +9,18 @@ $form .= $this->Html->div('form-row mt-4',
         'placeholder' => 'Escolha uma foto',
         'label' => false,
         'required' => false,
-        'div' => array('class' => 'form-group col-md-6'),
+        'div' => array('class' => 'form-group col-md-4'),
         'class' => 'form-control',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))
     )) . '<input type="hidden" name="MAX_FILE_SIZE" value="15000">' .
     $this->Form->input('Pet.nome', array(
         'required' => false,
-        'div' => array('class' => 'form-group col-md-6'),
+        'div' => array('class' => 'form-group col-md-4'),
         'class' => 'form-control',
         'placeholder' => 'Nome',
         'label' => false,
         'error' => array('attributes' => array('class' => 'invalid-feedback'))
-    ))
-);
-
-$form .= $this->Html->div('form-row mt-4', 
+    )) .
     $this->Form->input('Pet.sexo', array(
         'label' => false,
         'empty' => 'Selecione o sexo',
@@ -32,10 +29,13 @@ $form .= $this->Html->div('form-row mt-4',
             'Macho' => 'Macho', 
             'Fêmea' => 'Fêmea', 
         ),
-        'div' => array('class' => 'form-group col-md-6'),
+        'div' => array('class' => 'form-group col-md-4'),
         'class' => 'form-control',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))  
-    )) .
+    ))
+);
+
+$form .= $this->Html->div('form-row', 
     $this->Form->input('Pet.porte', array(
         'label' => false,
         'empty' => 'Selecione o porte',
@@ -47,13 +47,10 @@ $form .= $this->Html->div('form-row mt-4',
             'Grande - De 25 até 45' => 'Grande - De 25 até 45',
             'Gigante - De 45 até 90' => 'Gigante - De 45 até 90'
         ),
-        'div' => array('class' => 'form-group col-md-6'),
+        'div' => array('class' => 'form-group col-md-4'),
         'class' => 'form-control',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))  
-    ))
-);
-
-$form .= $this->Html->div('form-row mt-4', 
+    )) .
     $this->Form->input('Pet.castrado', array(
         'label' => false,
         'empty' => 'O Pet é castrado?',
@@ -62,7 +59,7 @@ $form .= $this->Html->div('form-row mt-4',
             'Sim' => 'Sim', 
             'Não' => 'Não', 
         ),
-        'div' => array('class' => 'form-group col-md-6'),
+        'div' => array('class' => 'form-group col-md-4'),
         'class' => 'form-control',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))  
     )) .
@@ -74,9 +71,45 @@ $form .= $this->Html->div('form-row mt-4',
             'Sim' => 'Sim', 
             'Não' => 'Não', 
         ),
-        'div' => array('class' => 'form-group col-md-6'),
+        'div' => array('class' => 'form-group col-md-4'),
         'class' => 'form-control',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))  
+    ))
+);
+
+$form .= $this->Html->div('form-row', 
+    $this->Form->input('Pet.especie-pet', array(
+        'label' => false,
+        'empty' => 'Espécie',
+        'type' => 'select',
+        'options' => array(
+            'Cachorro' => 'Cachorro', 
+            'Gato' => 'Gato',
+            'Outro' => 'Outro', 
+        ),
+        'div' => array('class' => 'form-group col-md-4'),
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))  
+    )) .
+    $this->Form->input('Pet.idade', array(
+        'required' => false,
+        'div' => array('class' => 'form-group col-md-4'),
+        'class' => 'form-control',
+        'placeholder' => 'Idade',
+        'label' => false,
+        'error' => array('attributes' => array('class' => 'invalid-feedback')) 
+    )) .
+    $this->Form->input('Pet.meses-anos', array(
+        'label' => false,
+        'empty' => 'Meses/Anos',
+        'type' => 'select',
+        'options' => array(
+            'Meses' => 'Meses',
+            'Anos' => 'Anos', 
+        ),
+        'div' => array('class' => 'form-group col-md-4'),
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback')) 
     ))
 );
 
