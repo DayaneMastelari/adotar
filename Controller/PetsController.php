@@ -56,8 +56,8 @@ class PetsController extends AppController {
         $conditions = array('Pet.perdido' => 'Sim');
         $pets = $this->Pet->find('all', compact('fields', 'conditions'));
         $fields = array('Usuario.id', 'Usuario.nome', 'Usuario.telefone', 'Usuario.email');
-        $conditions = array('Pet.usuaeio_id' => 'Usuario.id');
-        $pets .= $this->Pet->find('all', compact('fields', 'conditions'));
+        $conditions = array('Pet.usuario_id' => 'Usuario.id');
+        $pets .= $this->Pet->find('first', compact('fields', 'conditions'));
 
         $this->set('pets', $pets);
     }
