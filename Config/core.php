@@ -233,7 +233,7 @@ setLocale(LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese');
 		'cookieTimeout' => 0,
 		'checkAgent' => false
 	));
-
+	
 /**
  * A random string used in security hashing methods.
  */

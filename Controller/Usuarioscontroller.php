@@ -26,7 +26,7 @@ class UsuariosController extends AppController {
     );
 
     public $paginate = array(
-        'fields' => array('Usuario.id', 'Usuario.nome', 'Usuario.nascimento', 'Usuario.email'),
+        'fields' => array('Usuario.id', 'Usuario.nome', 'Usuario.login', 'Usuario.email'),
         'conditions' => array(),
         'order' => array('Usuario.nome' => 'asc'),
         'limit' => 10
@@ -61,7 +61,7 @@ class UsuariosController extends AppController {
                 $this->redirect('/usuarios');
             }
         } else {
-            $fields = array('Usuario.id', 'Usuario.nome', 'Usuario.celular', 'Usuario.cpf','Usuario.nascimento', 'Usuario.estado', 'Usuario.cep', 'Usuario.cidade', 'Usuario.bairro', 'Usuario.endereco', 'Usuario.email', 'Usuario.senha',);
+            $fields = array('Usuario.id', 'Usuario.nome', 'Usuario.telefone', 'Usuario.cpf', 'Usuario.estado', 'Usuario.cep', 'Usuario.cidade', 'Usuario.bairro', 'Usuario.endereco', 'Usuario.email', 'Usuario.login',);
             $conditions = array('Usuario.id' => $id);
             $this->request->data = $this->Usuario->find('first', compact('fields', 'conditions'));
         }

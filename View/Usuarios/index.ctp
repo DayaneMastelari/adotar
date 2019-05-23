@@ -29,13 +29,13 @@ foreach($usuarios as $usuario){
     $viewLink = $this->Js->link($usuario['Usuario']['nome'], '/usuarios/view/' . $usuario['Usuario']['id'], array('update' => '#content'));
     $detalhe[] = array(
         $viewLink,
-        date('d/m/Y', strtotime($usuario['Usuario']['nascimento'])),
+        $usuario['Usuario']['login'],
         $usuario['Usuario']['email'],
         $editLink . ' ' . $deleteLink
     );
 }
 
-$titulos = array('Nome', 'Nascimento', 'Email', ' ');
+$titulos = array('Nome', 'Login', 'Email', ' ');
 $header = $this->Html->tableHeaders($titulos);
 $body = $this->Html->tableCells($detalhe);
 
