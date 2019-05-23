@@ -88,13 +88,13 @@ $form .= $this->Html->div('form-row',
             'Gato' => 'Gato',
             'Outro' => 'Outro', 
         ),
-        'div' => array('class' => 'form-group col-md-4'),
+        'div' => array('class' => 'form-group col-md-3'),
         'class' => 'form-control',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))  
     )) .
     $this->Form->input('Pet.idade', array(
         'required' => false,
-        'div' => array('class' => 'form-group col-md-4'),
+        'div' => array('class' => 'form-group col-md-3'),
         'class' => 'form-control',
         'placeholder' => 'Idade',
         'label' => false,
@@ -108,7 +108,19 @@ $form .= $this->Html->div('form-row',
             'Meses' => 'Meses',
             'Anos' => 'Anos', 
         ),
-        'div' => array('class' => 'form-group col-md-4'),
+        'div' => array('class' => 'form-group col-md-3'),
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback')) 
+    )) .
+    $this->Form->input('Pet.perdido', array(
+        'label' => false,
+        'empty' => 'O animal está perdido?',
+        'type' => 'select',
+        'options' => array(
+            'Sim' => 'Sim',
+            'Não' => 'Não', 
+        ),
+        'div' => array('class' => 'form-group col-md-3'),
         'class' => 'form-control',
         'error' => array('attributes' => array('class' => 'invalid-feedback')) 
     ))

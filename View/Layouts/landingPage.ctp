@@ -25,13 +25,13 @@
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <?php echo $this->Html->link('Cadastrar animal', '/pets/add', array('class' => 'nav-link nav-color-text'));?>                          
+                        <?php echo $this->Html->link('Cadastrar Pet', '/pets/add', array('class' => 'nav-link nav-color-text'));?>                          
                     </li> 
                     <li class="nav-item">
-                        <?php echo $this->Html->link('Animais adotados', '/', array('class' => 'nav-link nav-color-text'));?>
+                        <?php echo $this->Html->link('Adotados', '/', array('class' => 'nav-link nav-color-text'));?>
                     </li> 
                     <li class="nav-item">
-                        <?php echo $this->Html->link('Animais perdidos', '/', array('class' => 'nav-link nav-color-text'));?>
+                        <?php echo $this->Html->link('Perdidos', '/pets/perdidos', array('class' => 'nav-link nav-color-text'));?>
                     </li>                                        
                 </ul>
                 <div class="dropdown" >

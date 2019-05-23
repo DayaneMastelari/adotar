@@ -7,13 +7,13 @@
 
         <?php 
             echo $this->Html->css('bootstrap.min.css');
-            echo $this->Html->css('starter-template.css');
+            echo $this->Html->css('album.css');
             //echo $this->Html->css('all.css');
         ?>
 
     </head>
     <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
             <?php
                 echo $this->Html->link('Adotar Faz Bem', '/', array(
                     'class' => 'navbar-brand'
@@ -47,17 +47,23 @@
             </div>
         </nav>
 
-        <main role="main" class="container" id="content">
+        <main role="main" class="container" background-color="#0d0d0d">
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+              <section class="jumbotron text-center">
+                <div class="container">
+                  <h1 class="jumbotron-heading">Animais perdidos</h1>
+                  <p class="lead text-muted">Se você encontrou algum dessas animais entre em contato com o dono.</p>      
+                </div>
+              </section>
+            </div>
             <?php 
                 echo $this->Flash->render();
-                echo $this->fetch('content');                              
-            ?> 
+                echo $this->fetch('content');                 
+            ?>
         </main>
         <?php 
             echo $this->Html->script('jquery-3.4.1.min.js');
-            echo $this->Html->script('bootstrap.bundle.min.js'); 
-            echo $this->Js->writeBuffer();           
-        ?>  
-</div>      
+            echo $this->Html->script('bootstrap.bundle.min.js');            
+        ?>        
     </body>
 </html>

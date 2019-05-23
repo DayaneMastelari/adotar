@@ -8,6 +8,7 @@ class PetsController extends AppController {
 
     public function beforeFilter() {
         $this->Auth->allow(array('view'));
+        $this->Auth->mapActions(['read' => ['perdidos']]);
     }
 
     /*public $paginate = array(
@@ -20,7 +21,8 @@ class PetsController extends AppController {
     public function index() {
         $this->layout = 'landingPage';
         $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'pet.foto');
-        $pets = $this->Pet->find('all', compact('fields'));
+        $conditions = array('Pet.perdido' => 'Não');
+        $pets = $this->Pet->find('all', compact('fields', 'conditions'));
 
         $this->set('pets', $pets);
     }
@@ -46,6 +48,18 @@ class PetsController extends AppController {
 
     public function view() {
         
+    }
+
+    public function perdidos() {
+        $this->layout = 'perdidos';
+        $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'pet.foto');
+        $conditions = array('Pet.perdido' => 'Sim');
+        $pets = $this->Pet->find('all', compact('fields', 'conditions'));
+        $fields = array('Usuario.id', 'Usuario.nome', 'Usuario.telefone', 'Usuario.email');
+        $conditions = array('Pet.usuaeio_id' => 'Usuario.id');
+        $pets .= $this->Pet->find('all', compact('fields', 'conditions'));
+
+        $this->set('pets', $pets);
     }
 }
 

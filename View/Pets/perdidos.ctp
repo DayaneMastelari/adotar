@@ -8,9 +8,8 @@ foreach ($pets as $pet) {
             $this->Html->div('card-body',
                 $this->Html->para('card-text', 'Nome: ' . $pet['Pet']['nome']) .
                 $this->Html->para('card-text', 'Porte: ' . $pet['Pet']['porte']) .
-                $this->Html->para('card-text', 'Castrado: ' . $pet['Pet']['castrado']) .
                 $this->Html->div('d-flex justify-content-between align-items-center',
-                    $this->Html->link('Adotar', '/pets/view/' . $pet['Pet']['id'], array('class' => 'btn btn-block btn-primary'))
+                    $this->Html->link('Entrar em contato com o dono', '/pets/view/' . $pet['Pet']['id'], array('class' => 'btn btn-block btn-primary'))
                 )
             )
         )
@@ -18,6 +17,5 @@ foreach ($pets as $pet) {
 }
 echo $this->Flash->render('warning'); 
 echo $this->Flash->render('success');
-
 echo $this->Html->div('row', $view);
 ?>
