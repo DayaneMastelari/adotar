@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 22-Maio-2019 às 22:44
+-- Generation Time: 23-Maio-2019 às 23:00
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 5.6.40
 
@@ -21,6 +21,79 @@ SET time_zone = "+00:00";
 --
 -- Database: `adotar`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `acos`
+--
+
+CREATE TABLE `acos` (
+  `id` int(10) NOT NULL,
+  `parent_id` int(10) DEFAULT NULL,
+  `model` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `foreign_key` int(10) DEFAULT NULL,
+  `alias` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `lft` int(10) DEFAULT NULL,
+  `rght` int(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Extraindo dados da tabela `acos`
+--
+
+INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
+(1, NULL, NULL, NULL, 'Usuarios', 1, 2),
+(2, NULL, NULL, NULL, 'Pets', 3, 4),
+(3, NULL, NULL, NULL, 'Ongs', 5, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `aros`
+--
+
+CREATE TABLE `aros` (
+  `id` int(10) NOT NULL,
+  `parent_id` int(10) DEFAULT NULL,
+  `model` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `foreign_key` int(10) DEFAULT NULL,
+  `alias` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `lft` int(10) DEFAULT NULL,
+  `rght` int(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Extraindo dados da tabela `aros`
+--
+
+INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
+(1, NULL, 'Usuario', 10, NULL, 1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `aros_acos`
+--
+
+CREATE TABLE `aros_acos` (
+  `id` int(10) NOT NULL,
+  `aro_id` int(10) NOT NULL,
+  `aco_id` int(10) NOT NULL,
+  `_create` varchar(2) COLLATE utf8_bin NOT NULL DEFAULT '0',
+  `_read` varchar(2) COLLATE utf8_bin NOT NULL DEFAULT '0',
+  `_update` varchar(2) COLLATE utf8_bin NOT NULL DEFAULT '0',
+  `_delete` varchar(2) COLLATE utf8_bin NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Extraindo dados da tabela `aros_acos`
+--
+
+INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`, `_delete`) VALUES
+(1, 1, 2, '1', '1', '1', '1'),
+(2, 1, 1, '1', '1', '1', '1'),
+(3, 1, 3, '-1', '-1', '-1', '-1');
 
 -- --------------------------------------------------------
 
@@ -69,6 +142,8 @@ CREATE TABLE `pets` (
   `especie-pet` varchar(50) DEFAULT NULL,
   `idade` int(11) DEFAULT NULL,
   `meses-anos` varchar(50) DEFAULT NULL,
+  `perdido` varchar(10) DEFAULT NULL,
+  `adotado` varchar(10) DEFAULT NULL,
   `usuario_id` int(11) DEFAULT NULL,
   `ong_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -77,21 +152,18 @@ CREATE TABLE `pets` (
 -- Extraindo dados da tabela `pets`
 --
 
-INSERT INTO `pets` (`id`, `foto`, `nome`, `sexo`, `especie`, `porte`, `castrado`, `vacinado`, `especie-pet`, `idade`, `meses-anos`, `usuario_id`, `ong_id`) VALUES
-(6, 'mimi.JPG', 'Mimi', 'Fêmea', NULL, 'Mini - Até 5 quilos', 'Sim', 'Sim', NULL, NULL, NULL, NULL, NULL),
-(10, '38431280_2131143170461043_5222059879744667648_n.jpg', 'Nenê', 'Fêmea', NULL, 'Mini - Até 5 quilos', 'Sim', 'Sim', NULL, NULL, NULL, NULL, NULL),
-(11, '1963027_605910586164315_950251558_n.jpg', 'Chiby', 'Fêmea', NULL, 'Mini - Até 5 quilos', 'Sim', 'Sim', NULL, NULL, NULL, NULL, NULL),
-(12, '40580603_257278035117828_6490784378720448210_n.jpg', 'Houdni', 'Macho', NULL, 'Mini - Até 5 quilos', 'Sim', 'Sim', NULL, NULL, NULL, NULL, NULL),
-(13, '42310580_2287425664604213_7383021124794482308_n.jpg', 'Harry', 'Macho', NULL, 'Gigante - De 45 até 90', 'Não', 'Sim', NULL, NULL, NULL, NULL, NULL),
-(14, '43678617_139308707032941_3383552811564574769_n.jpg', 'whisky', 'Macho', NULL, 'Grande - De 25 até 45', 'Não', 'Sim', NULL, NULL, NULL, NULL, NULL),
-(15, '43985303_2347020492193227_7582658725317419066_n.jpg', 'Mimi Vampy', 'Fêmea', NULL, '', 'Sim', 'Sim', NULL, NULL, NULL, NULL, NULL),
-(16, '52670262_371699780079845_4399683810200995125_n.jpg', 'Emma', 'Fêmea', NULL, 'Mini - Até 5 quilos', 'Sim', 'Sim', NULL, NULL, NULL, NULL, NULL),
-(17, 'IMG_0247.JPG', 'Chili', 'Fêmea', NULL, 'Mini - Até 5 quilos', 'Sim', 'Sim', NULL, NULL, NULL, NULL, NULL),
-(18, '53535916_127461198330074_2229167655871484034_n.jpg', 'Chiby Bolinha', 'Fêmea', NULL, 'Mini - Até 5 quilos', 'Sim', 'Sim', NULL, NULL, NULL, NULL, NULL),
-(19, '11203356_1028246623869403_388277212_n.jpg', 'Bidio', 'Macho', NULL, 'Mini - Até 5 quilos', 'Sim', 'Sim', NULL, NULL, NULL, NULL, NULL),
-(20, 'dog3-600x459.jpg', 'Mili', 'Fêmea', 'Cachorro', 'Mini - Até 5 quilos', 'Sim', 'Sim', NULL, 3, NULL, NULL, NULL),
-(21, '46mree1y11vlsvwxxrsgjikqg.jpg', 'Bily', 'Macho', NULL, 'Grande - De 25 até 45', 'Não', 'Não', 'Cachorro', 4, 'Meses', NULL, NULL),
-(22, '53535916_127461198330074_2229167655871484034_n.jpg', 'teste', 'Macho', NULL, 'Mini - Até 5 quilos', 'Não', 'Sim', 'Cachorro', 4, 'Anos', NULL, NULL);
+INSERT INTO `pets` (`id`, `foto`, `nome`, `sexo`, `especie`, `porte`, `castrado`, `vacinado`, `especie-pet`, `idade`, `meses-anos`, `perdido`, `adotado`, `usuario_id`, `ong_id`) VALUES
+(6, 'mimi.JPG', 'Mimi', 'Fêmea', NULL, 'Mini - Até 5 quilos', 'Sim', 'Sim', NULL, NULL, NULL, 'Sim', NULL, 19, NULL),
+(10, '38431280_2131143170461043_5222059879744667648_n.jpg', 'Nenê', 'Fêmea', NULL, 'Mini - Até 5 quilos', 'Sim', 'Sim', NULL, NULL, NULL, 'Sim', NULL, 10, NULL),
+(11, '1963027_605910586164315_950251558_n.jpg', 'Chiby', 'Fêmea', NULL, 'Mini - Até 5 quilos', 'Sim', 'Sim', NULL, NULL, NULL, 'Não', NULL, NULL, NULL),
+(12, '40580603_257278035117828_6490784378720448210_n.jpg', 'Houdni', 'Macho', NULL, 'Mini - Até 5 quilos', 'Sim', 'Sim', NULL, NULL, NULL, 'Não', NULL, 19, NULL),
+(15, '43985303_2347020492193227_7582658725317419066_n.jpg', 'Mimi Vampy', 'Fêmea', NULL, '', 'Sim', 'Sim', NULL, NULL, NULL, 'Não', NULL, NULL, NULL),
+(16, '52670262_371699780079845_4399683810200995125_n.jpg', 'Emma', 'Fêmea', NULL, 'Mini - Até 5 quilos', 'Sim', 'Sim', NULL, NULL, NULL, 'Não', NULL, NULL, NULL),
+(17, 'IMG_0247.JPG', 'Chili', 'Fêmea', NULL, 'Mini - Até 5 quilos', 'Sim', 'Sim', NULL, NULL, NULL, 'Não', NULL, NULL, NULL),
+(18, '53535916_127461198330074_2229167655871484034_n.jpg', 'Chiby Bolinha', 'Fêmea', NULL, 'Mini - Até 5 quilos', 'Sim', 'Sim', NULL, NULL, NULL, 'Não', NULL, 19, NULL),
+(19, '11203356_1028246623869403_388277212_n.jpg', 'Bidio', 'Macho', NULL, 'Mini - Até 5 quilos', 'Sim', 'Sim', NULL, NULL, NULL, 'Não', NULL, 19, NULL),
+(31, '43985303_2347020492193227_7582658725317419066_n.jpg', 'mimili', '', NULL, '', '', '', '', NULL, '', 'Não', NULL, 10, NULL),
+(32, 'dog3-600x459.jpg', 'lucas', '', NULL, '', '', '', '', NULL, '', 'Não', NULL, 10, NULL);
 
 -- --------------------------------------------------------
 
@@ -101,30 +173,54 @@ INSERT INTO `pets` (`id`, `foto`, `nome`, `sexo`, `especie`, `porte`, `castrado`
 
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
-  `login` varchar(100) DEFAULT NULL,
-  `celular` varchar(14) DEFAULT NULL,
+  `nome` varchar(100) DEFAULT NULL,
+  `telefone` varchar(14) DEFAULT NULL,
   `cpf` varchar(14) DEFAULT NULL,
-  `nascimento` datetime DEFAULT NULL,
   `estado` varchar(100) DEFAULT NULL,
   `cep` varchar(10) DEFAULT NULL,
   `cidade` varchar(100) DEFAULT NULL,
   `bairro` varchar(100) DEFAULT NULL,
   `endereco` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
-  `senha` varchar(20) DEFAULT NULL
+  `login` varchar(50) DEFAULT NULL,
+  `senha` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `login`, `celular`, `cpf`, `nascimento`, `estado`, `cep`, `cidade`, `bairro`, `endereco`, `email`, `senha`) VALUES
-(2, 'Hayat Design', '123456789', '44364978876', '1994-06-22 00:00:00', 'Espírito Santo', '17525181', 'Marília', 'Acapulco', 'Avenida Alcídes Lajes Magalhães, 140', 'daya.mastelari@gmail.com', '123456'),
-(3, 'dayane', '4655656', '456465456', '1969-12-31 00:00:00', 'Amazonas', '74674676', 'hgghgk', 'hjhjgjhk', 'hhjjhgjhk', 'dayane.mastelari@hotmail.com', '48dcd8010ef25a6a4dd5');
+INSERT INTO `usuarios` (`id`, `nome`, `telefone`, `cpf`, `estado`, `cep`, `cidade`, `bairro`, `endereco`, `email`, `login`, `senha`) VALUES
+(10, 'Dayane Paio', '14996779562', '44364978876', 'SSão PauloP', '17510393', 'Marília', 'Jd Floresta', '31 de março, 25', 'dayane.mastelari@hotmail.com', 'dayane', '610cc014cc28e9e3e9101ee6d038e8475f0041128d0ea3ac1729f31be72cb455'),
+(19, 'Miguel', '132454864', '45467465465', 'Bahia', '56594564', 'Marília', 'Palmital', 'Abobrinha', 'miguel.jumior@gmail.com', 'miguel', '610cc014cc28e9e3e9101ee6d038e8475f0041128d0ea3ac1729f31be72cb455');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `acos`
+--
+ALTER TABLE `acos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_acos_lft_rght` (`lft`,`rght`),
+  ADD KEY `idx_acos_alias` (`alias`);
+
+--
+-- Indexes for table `aros`
+--
+ALTER TABLE `aros`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_aros_lft_rght` (`lft`,`rght`),
+  ADD KEY `idx_aros_alias` (`alias`);
+
+--
+-- Indexes for table `aros_acos`
+--
+ALTER TABLE `aros_acos`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `ARO_ACO_KEY` (`aro_id`,`aco_id`),
+  ADD KEY `idx_aco_id` (`aco_id`);
 
 --
 -- Indexes for table `ongs`
@@ -151,6 +247,24 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT for table `acos`
+--
+ALTER TABLE `acos`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `aros`
+--
+ALTER TABLE `aros`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `aros_acos`
+--
+ALTER TABLE `aros_acos`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `ongs`
 --
 ALTER TABLE `ongs`
@@ -160,13 +274,13 @@ ALTER TABLE `ongs`
 -- AUTO_INCREMENT for table `pets`
 --
 ALTER TABLE `pets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
