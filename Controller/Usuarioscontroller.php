@@ -5,25 +5,10 @@ class UsuariosController extends AppController {
 
     public $layout = 'bootstrap';
     public $helper = array('Js' => array('Jquerry'));
-    public $components = array(
-        'RequestHandler',
-        /*'Auth' => array(
-            'flash' => array('element' => 'bootstrap', 'params' => array('key' => 'warning'), 'key' => 'warning'),
-            'authError' => 'Você não possui permissão para acessar essa operação',
-            'loginAction' => '/login',
-            'loginRedirect' => '/',
-            'logoutRedirect' => '/login',
-            'authenticate' => array(
-                'Form' => array(
-                    'userModel' => 'Usuario',
-                    'fields' => array('username' => 'login', 'password' => 'senha'),
-                    'passwordHasher' => array('className' => 'Simple', 'hashType' => 'sha256')
-                )
-            ),
-            //'authorize' => array('Crud' => array('userModel' => 'Usuario'))
-        ),
-        //'Acl'*/
-    );
+
+    public function beforeFilter() {
+        $this->Auth->allow(array('login', 'logout', 'add'));
+    }
 
     public $paginate = array(
         'fields' => array('Usuario.id', 'Usuario.nome', 'Usuario.login', 'Usuario.email'),
@@ -47,7 +32,6 @@ class UsuariosController extends AppController {
         if(!empty($this->request->data)){
             $this->Usuario->create();
             if($this->Usuario->save($this->request->data)){
-                pr($this->request->data);
                 $this->Flash->bootstrap('Cadastro realizado com sucesso', array('key' => 'success'));
                 $this->redirect('/usuarios');
             }
@@ -73,26 +57,21 @@ class UsuariosController extends AppController {
         $this->request->data = $this->Usuario->find('first', compact('fields', 'conditions'));
     }
 
-    public function delete($idUsuario){
-        $this->Usuario->delete($idUsuario);
-        $this->Flash->bootstrap('Usuario excluido com sucesso!', array('key' => 'warning'));
+    public function delete($id){
+        $this->Usuario->delete($id);
         $this->redirect('/usuarios');
-
+        $this->Flash->bootstrap('Usuario escluído com sucesso', array('key' => 'warning'));
     }
 
     public function login() {
         $this->layout = 'login';
-        pr($this->request->data);
-        exit();
-        /*if ($this->request->is('post')) {
-            if ($this->Auth->login()) {
-                return $this->redirect($this->Auth->redirectUrl());
-            }
-            $this->Flash->bootstrap('Usuário ou senha incorretos', array('key' => 'danger'));
-            
-        }*/
- 
-    }
+         if ($this->request->is('post')) {
+             if ($this->Auth->login()) {
+                 return $this->redirect($this->Auth->redirectUrl());
+             }
+             $this->Flash->bootstrap('Usuário ou senha incorretos', array('key' => 'danger'));
+         }
+     }
  
     public function logout() {
         $this->Auth->logout();

@@ -20,6 +20,9 @@ foreach ($pets as $pet) {
         )
     );
 }
+echo $this->Flash->render('warning'); 
+echo $this->Flash->render('success');
+
 echo $this->Html->div('row', $view);
 ?>
 

@@ -237,12 +237,12 @@ setLocale(LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese');
 /**
  * A random string used in security hashing methods.
  */
-	Configure::write('Security.salt', 'fsd7g4F68SDG464g6s7896gs3gr');
+	Configure::write('Security.salt', 'flasdgfjhdsgfhs7486r87234fwgfjhgf87rtfdgfj');
 
 /**
  * A random numeric string (digits only) used to encrypt/decrypt strings.
  */
-	Configure::write('Security.cipherSeed', '7861354413212346513287');
+	Configure::write('Security.cipherSeed', '6271046321460832648710501246064');
 
 /**
  * Apply timestamps with the last modified time to static assets (js, css, images).

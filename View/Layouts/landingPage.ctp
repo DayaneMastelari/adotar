@@ -14,29 +14,36 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-            <a class="navbar-brand" href="#">Adotar Faz Bem</a>
+            <?php
+                echo $this->Html->link('Adotar Faz Bem', '/', array(
+                    'class' => 'navbar-brand'
+                ))
+            ?>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <?php echo $this->Html->link('Ongs', '/filmes', array('class' => 'nav-link')); ?>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Adotar</a>
-                      <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">Cachorros</a>
-                        <a class="dropdown-item" href="#">Gatos</a>
-                        <a class="dropdown-item" href="#">Outros</a>
-                      </div>
-                    </li>            
+                        <?php echo $this->Html->link('Cadastrar animal', '/pets/add', array('class' => 'nav-link nav-color-text'));?>                          
+                    </li> 
+                    <li class="nav-item">
+                        <?php echo $this->Html->link('Animais adotados', '/', array('class' => 'nav-link nav-color-text'));?>
+                    </li> 
+                    <li class="nav-item">
+                        <?php echo $this->Html->link('Animais perdidos', '/', array('class' => 'nav-link nav-color-text'));?>
+                    </li>                                        
                 </ul>
-                <form class="form-inline my-2 my-lg-0">                  
-                  <?php echo $this->Html->link('Login', '/generos', array('class' => 'btn btn-outline-light my-2 my-sm-0'));?>
-                  <?php echo $this->Html->link('Perfil', '/ators', array('class' => 'form-control btn btn-outline-light ml-2 mr-sm-2')); ?>       
-                </form>
+                <div class="dropdown" >
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Perfil
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Editar perfil</a>
+                        <a class="dropdown-item" href="#">Meus animais cadastrados</a>
+                        <a class="dropdown-item" href="#">Sair</a>
+                      </div>
+                    </div>                
             </div>
         </nav>
 

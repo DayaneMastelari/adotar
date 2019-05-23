@@ -7,9 +7,9 @@ $novoButton = $this->Js->link('Novo', '/usuarios/add', array(
 $filtro = $this->Form->create('Usuarios', array('class' => 'form-inline'));
 $filtro .= $this->Form->input('Usuario.nome', array(
     'required' => false,
-    'label' => array('text' => 'Nome Fantasia', 'class' => 'sr-only'),
+    'label' => array('text' => 'Nome ou Razão Social', 'class' => 'sr-only'),
     'class' => 'form-control mb-2 mr-sm-2',
-    'placeholder' => 'Nome Fantasia'
+    'placeholder' => 'Nome ou Razão Social'
 ));
 $filtro .= $this->Js->submit('Filtrar', array(
     'type' => 'submit', 

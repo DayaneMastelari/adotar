@@ -14,27 +14,25 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-            <a class="navbar-brand" href="#">Adotar Faz Bem</a>
+            <?php
+                echo $this->Html->link('Adotar Faz Bem', '/', array(
+                    'class' => 'navbar-brand'
+                ))
+            ?>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <?php echo $this->Html->link('Ongs', '/ongs', array('class' => 'nav-link nav-color-text')); ?>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" color="white">Adotar</a>
-                      <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">Cachorros</a>
-                        <a class="dropdown-item" href="#">Gatos</a>
-                        <a class="dropdown-item" href="#">Outros</a>
-                      </div>
-                    </li>          
+                        <?php echo $this->Html->link('Cadastrar animal', '/pets/add', array('class' => 'nav-link nav-color-text'));?>                          
+                    </li> 
+                    <li class="nav-item">
+                        <?php echo $this->Html->link('Animais adotados', '/', array('class' => 'nav-link nav-color-text'));?>
+                    </li>                                        
                 </ul>
-                <form class="form-inline my-2 my-lg-0">                  
-                  <?php echo $this->Html->link('Login', '/generos', array('class' => 'btn btn-outline-light my-2 my-sm-0'));?>
-                  <?php echo $this->Html->link('Perfil', '/usuarios/id', array('class' => 'form-control btn btn-outline-light ml-2 mr-sm-2')); ?>       
+                <form class="form-inline my-2 my-lg-0">                                    
+                  <?php echo $this->Html->link('Perfil', '/usuarios/edit', array('class' => 'form-control btn btn-outline-light ml-2 mr-sm-2')); ?>       
                 </form>
             </div>
         </nav>

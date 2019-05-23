@@ -4,7 +4,7 @@ $form .= $this->Html->image('logo.png');
 $form .= $this->Form->input('Usuario.login', array(
     'label' => false,
     'required' => false,
-    'placeholder' => 'login',
+    'placeholder' => 'Login',
     'class' => 'form-control',
     'div' => false,
     'error' => array('attributes' => array('class' => 'invalid-feedback'))

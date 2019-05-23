@@ -2,6 +2,7 @@
 $form = $this->Form->create('Pet', array(
     'enctype' => 'multipart/form-data'
 ));
+$form .= $this->Form->hidden('Pet.usuario_id');
 $form .= $this->Html->div('form-row mt-4', 
     $this->Form->input('Pet.foto', array(
         //'between' => '<br />',
@@ -101,7 +102,7 @@ $form .= $this->Html->div('form-row',
     )) .
     $this->Form->input('Pet.meses-anos', array(
         'label' => false,
-        'empty' => 'Meses/Anos',
+        'empty' => 'Idade em messes ou anos',
         'type' => 'select',
         'options' => array(
             'Meses' => 'Meses',
