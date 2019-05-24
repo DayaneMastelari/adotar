@@ -1,36 +1,23 @@
 <?php
-$form = $this->Form->create('Pet', array(
-    'enctype' => 'multipart/form-data'
-));
+$form = $this->Form->create('Pet');
 $form .= $this->Form->hidden('Pet.id');
 $form .= $this->Html->div('form-row mt-4', 
-    $this->Form->input('Pet.foto', array(
-        //'between' => '<br />',
-        'type' => 'file',
-        'placeholder' => 'Escolha uma foto',
-        'label' => false,
-        'required' => false,
-        'div' => array('class' => 'form-group col-md-4'),
-        'class' => 'form-control',
-        'error' => array('attributes' => array('class' => 'invalid-feedback'))
-    )) . '<input type="hidden" name="MAX_FILE_SIZE" value="15000">' .
     $this->Form->input('Pet.nome', array(
+        'label' => array('text' => 'Nome'),
         'required' => false,
-        'div' => array('class' => 'form-group col-md-4'),
+        'div' => array('class' => 'form-group col-md-6'),
         'class' => 'form-control',
         'placeholder' => 'Nome',
-        'label' => false,
         'error' => array('attributes' => array('class' => 'invalid-feedback'))
     )) .
     $this->Form->input('Pet.sexo', array(
-        'label' => false,
-        'empty' => 'Selecione o sexo',
+        'label' => array('text' => 'Sexo'),
         'type' => 'select',
         'options' => array(
             'Macho' => 'Macho', 
             'Fêmea' => 'Fêmea', 
         ),
-        'div' => array('class' => 'form-group col-md-4'),
+        'div' => array('class' => 'form-group col-md-6'),
         'class' => 'form-control',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))  
     ))
@@ -38,23 +25,21 @@ $form .= $this->Html->div('form-row mt-4',
 
 $form .= $this->Html->div('form-row', 
     $this->Form->input('Pet.porte', array(
-        'label' => false,
-        'empty' => 'Selecione o porte',
+        'label' => array('text' => 'Porte'),
         'type' => 'select',
         'options' => array(
-            'Mini - Até 5 quilos' => 'Mini - Até 5 quilos', 
-            'Pequeno - De 5 até 15 quilos' => 'Pequeno - De 5 até 15 quilos', 
-            'Médio - De 15 até 25' => 'Médio - De 15 até 25', 
-            'Grande - De 25 até 45' => 'Grande - De 25 até 45',
-            'Gigante - De 45 até 90' => 'Gigante - De 45 até 90'
+            'Mini' => 'Mini', 
+            'Pequeno' => 'Pequeno', 
+            'Médio' => 'Médio', 
+            'Grande' => 'Grande',
+            'Gigante' => 'Gigante'
         ),
         'div' => array('class' => 'form-group col-md-4'),
         'class' => 'form-control',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))  
     )) .
     $this->Form->input('Pet.castrado', array(
-        'label' => false,
-        'empty' => 'O Pet é castrado?',
+        'label' => array('text' => 'Castrado'),
         'type' => 'select',
         'options' => array(
             'Sim' => 'Sim', 
@@ -65,8 +50,7 @@ $form .= $this->Html->div('form-row',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))  
     )) .
     $this->Form->input('Pet.vacinado', array(
-        'label' => false,
-        'empty' => 'O Pet é vacinado?',
+        'label' => array('text' => 'Vacinado'),
         'type' => 'select',
         'options' => array(
             'Sim' => 'Sim', 
@@ -79,9 +63,8 @@ $form .= $this->Html->div('form-row',
 );
 
 $form .= $this->Html->div('form-row', 
-    $this->Form->input('Pet.especie-pet', array(
-        'label' => false,
-        'empty' => 'Espécie',
+    $this->Form->input('Pet.especie', array(
+        'label' => array('text' => 'Espécie'),
         'type' => 'select',
         'options' => array(
             'Cachorro' => 'Cachorro', 
@@ -93,16 +76,14 @@ $form .= $this->Html->div('form-row',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))  
     )) .
     $this->Form->input('Pet.idade', array(
-        'required' => false,
+        'required' => array('text' => 'Idade'),
         'div' => array('class' => 'form-group col-md-3'),
         'class' => 'form-control',
         'placeholder' => 'Idade',
-        'label' => false,
         'error' => array('attributes' => array('class' => 'invalid-feedback')) 
     )) .
     $this->Form->input('Pet.meses-anos', array(
-        'label' => false,
-        'empty' => 'Idade em messes ou anos',
+        'label' => array('text' => 'Idade em meses ou anos'),
         'type' => 'select',
         'options' => array(
             'Meses' => 'Meses',
@@ -113,8 +94,7 @@ $form .= $this->Html->div('form-row',
         'error' => array('attributes' => array('class' => 'invalid-feedback')) 
     )) .
     $this->Form->input('Pet.perdido', array(
-        'label' => false,
-        'empty' => 'O animal está perdido?',
+        'label' => array('text' => 'O animal está perdido'),
         'type' => 'select',
         'options' => array(
             'Sim' => 'Sim',
@@ -122,6 +102,17 @@ $form .= $this->Html->div('form-row',
         ),
         'div' => array('class' => 'form-group col-md-3'),
         'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback')) 
+    ))
+);
+
+$form .= $this->Html->div('form-row', 
+    $this->Form->input('Pet.caracteristicas', array(
+        'label' => array('text' => 'Caracteristicas adicionais'),
+        'type' => 'textarea',
+        'div' => array('class' => 'form-group col-md-12'),
+        'class' => 'form-control',
+        'maxlength' => 300,
         'error' => array('attributes' => array('class' => 'invalid-feedback')) 
     ))
 );
@@ -139,4 +130,6 @@ $this->Js->buffer('$(".form-error").addClass("is-invalid")');
 if($this->request->is('ajax')) {
     echo $this->Js->writeBuffer();
 }
+
+
 ?>

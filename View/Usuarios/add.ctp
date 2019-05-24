@@ -5,7 +5,7 @@ $form .= $this->Html->div('form-row mt-4',
         'required' => false,
         'label' => false,
         'placeholder' => 'Nome ou Razão Social',
-        'div' => array('class' => 'form-group col-md-6'),
+        'div' => array('class' => 'form-group col-md-4'),
         'class' => 'form-control',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))
     )) . 
@@ -13,10 +13,23 @@ $form .= $this->Html->div('form-row mt-4',
         'required' => false,
         'label' => false,
         'placeholder' => 'CPF ou CNPJ',
-        'div' => array('class' => 'form-group col-md-6'),
+        'div' => array('class' => 'form-group col-md-4'),
         'class' => 'form-control',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))
-    )) 
+    )) .
+    $this->Form->input('Usuario.tipo_usuario', array(
+        'type' => 'select',
+        'options' => array(
+            'ong' => 'Ong',
+            'usuario' => 'Amante dos animais'
+        ),
+        'required' => false,
+        'label' => false,
+        'empty' => 'Me cadastrar como:',
+        'div' => array('class' => 'form-group col-md-4'),
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
+    ))
 );
 
 $form .= $this->Html->div('form-row',

@@ -42,11 +42,11 @@ $form .= $this->Html->div('form-row',
         'empty' => 'Selecione o porte',
         'type' => 'select',
         'options' => array(
-            'Mini - Até 5 quilos' => 'Mini - Até 5 quilos', 
-            'Pequeno - De 5 até 15 quilos' => 'Pequeno - De 5 até 15 quilos', 
-            'Médio - De 15 até 25' => 'Médio - De 15 até 25', 
-            'Grande - De 25 até 45' => 'Grande - De 25 até 45',
-            'Gigante - De 45 até 90' => 'Gigante - De 45 até 90'
+            'Mini' => 'Mini', 
+            'Pequeno' => 'Pequeno', 
+            'Médio' => 'Médio', 
+            'Grande' => 'Grande',
+            'Gigante' => 'Gigante'
         ),
         'div' => array('class' => 'form-group col-md-4'),
         'class' => 'form-control',
@@ -79,7 +79,7 @@ $form .= $this->Html->div('form-row',
 );
 
 $form .= $this->Html->div('form-row', 
-    $this->Form->input('Pet.especie-pet', array(
+    $this->Form->input('Pet.especie', array(
         'label' => false,
         'empty' => 'Espécie',
         'type' => 'select',
@@ -122,6 +122,18 @@ $form .= $this->Html->div('form-row',
         ),
         'div' => array('class' => 'form-group col-md-3'),
         'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback')) 
+    ))
+);
+
+$form .= $this->Html->div('form-row', 
+    $this->Form->input('Pet.caracteristicas', array(
+        'label' => false,
+        'placeholder' => 'Caracteristicas adicionais',
+        'type' => 'textarea',
+        'div' => array('class' => 'form-group col-md-12'),
+        'class' => 'form-control',
+        'maxlength' => 300,
         'error' => array('attributes' => array('class' => 'invalid-feedback')) 
     ))
 );

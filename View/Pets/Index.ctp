@@ -1,6 +1,5 @@
 <?php
 $view = '';
-
 foreach ($pets as $pet) {
     $view .= $this->Html->div('col-md-4',
         $this->Html->div('card mb-4 shadow-sm',
@@ -10,7 +9,7 @@ foreach ($pets as $pet) {
                 $this->Html->para('card-text', 'Porte: ' . $pet['Pet']['porte']) .
                 $this->Html->para('card-text', 'Castrado: ' . $pet['Pet']['castrado']) .
                 $this->Html->div('d-flex justify-content-between align-items-center',
-                    $this->Html->link('Adotar', '/pets/view/' . $pet['Pet']['id'], array('class' => 'btn btn-block btn-primary'))
+                    $this->Html->link('Mais informações', '/pets/view/' . $pet['Pet']['id'], array('class' => 'btn btn-block btn-primary'))
                 )
             )
         )

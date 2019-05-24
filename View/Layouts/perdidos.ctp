@@ -54,6 +54,9 @@
                   <h1 class="jumbotron-heading">Animais perdidos</h1>
                   <p class="lead text-muted">Se você encontrou algum dessas animais entre em contato com o dono.</p>      
                 </div>
+                <p>
+                  <?php echo $this->Html->link('Cadastrar Pet', '/pets/add', array('class' => 'btn btn-primary btn-lg mt-4')) ?>             
+                </p>
               </section>
             </div>
             <?php 
