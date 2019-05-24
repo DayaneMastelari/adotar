@@ -49,16 +49,16 @@
 
         <main role="main" class="container" background-color="#0d0d0d">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
-              <section class="jumbotron text-center">
-                <div class="container">
-                  <h1 class="jumbotron-heading">Encontre seu novo amigo</h1>
-                  <p class="lead text-muted">Ao adotar, você ajuda a reduzir o número de cães e gatos abandonados. Os animais de rua já passaram por muito sofrimento e tudo o que precisam é de um lar para serem felizes de verdade!</p>      
-                </div>
-                <p>
-                  <?php echo $this->Html->link('Cadastr-se', '/usuarios/add', array('class' => 'btn btn-primary btn-lg mt-4')) ?>             
-                </p>
-              </section>
+            <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">Encontre seu novo amigo</h1>
+                <p class="lead text-muted">Ao adotar, você ajuda a reduzir o número de cães e gatos abandonados. Os animais de rua já passaram por muito sofrimento e tudo o que precisam é de um lar para serem felizes de verdade!</p>      
             </div>
+            <p>
+                <?php echo $this->Html->link('Cadastre-se', '/usuarios/add', array('class' => 'btn btn-primary btn-lg mt-4')) ?>             
+            </p>
+            </section>
+        </div>
             <?php 
                 echo $this->Flash->render();
                 echo $this->fetch('content');                 

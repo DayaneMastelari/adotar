@@ -8,6 +8,7 @@
         <?php 
             echo $this->Html->css('bootstrap.min.css');
             echo $this->Html->css('starter-template.css');
+            echo $this->Html->css('album.css');
             //echo $this->Html->css('all.css');
         ?>
 
