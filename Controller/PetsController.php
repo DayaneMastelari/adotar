@@ -9,9 +9,10 @@ class PetsController extends AppController {
     public function beforeFilter() {
         $this->Auth->allow(array('view'));
         $this->Auth->mapActions(['read' => ['perdidos']]);
-        $this->Auth->mapActions(['update' => ['meus_pets_cadastrados']]);
+        $this->Auth->mapActions(['read' => ['adotados']]);
         $this->Auth->mapActions(['read' => ['meus_pets_perdidos']]);
-        $this->Auth->mapActions(['update' => ['encontrado']]);
+        $this->Auth->mapActions(['update' => ['meus_pets_cadastrados']]);        
+        $this->Auth->mapActions(['update' => ['encontrado']]);        
     }
 
     /*public $paginate = array(
@@ -82,7 +83,7 @@ class PetsController extends AppController {
     }
 
     public function meus_pets_perdidos($id) {
-        $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'Pet.foto', 'Pet.encontrado');
+        $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'Pet.foto', 'Pet.encontrado', 'Pet.adotado');
         $conditions = array('Pet.usuario_id' => $id, 'Pet.perdido' => 'Sim', 'Pet.encontrado' => null);
         $pets = $this->Pet->find('all', compact('fields', 'conditions'));
         $this->set('pets', $pets);        
@@ -93,6 +94,13 @@ class PetsController extends AppController {
         $conditions = array('Pet.usuario_id' => $id, 'Pet.perdido' => 'Não', 'Pet.adotado' => null);
         $pets = $this->Pet->find('all', compact('fields', 'conditions'));
         $this->set('pets', $pets);        
+    }
+
+    public function adotados() {
+        $fields = array('Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'Pet.foto', 'Pet.adotado');
+        $conditions = array('Pet.adotado' => 'Sim');
+        $pets = $this->Pet->find('all', compact('fields', 'conditions'));
+        $this->set('pets', $pets); 
     }
 
     public function encontrado() {

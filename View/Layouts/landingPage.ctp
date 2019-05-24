@@ -28,7 +28,7 @@
                         <?php echo $this->Html->link('Doar', '/pets/add', array('class' => 'nav-link nav-color-text'));?>                          
                     </li> 
                     <li class="nav-item">
-                        <?php echo $this->Html->link('Adotados', '/', array('class' => 'nav-link nav-color-text'));?>
+                        <?php echo $this->Html->link('Adotados', '/pets/adotados', array('class' => 'nav-link nav-color-text'));?>
                     </li> 
                     <li class="nav-item">
                         <?php echo $this->Html->link('Perdidos', '/pets/perdidos', array('class' => 'nav-link nav-color-text'));?>
