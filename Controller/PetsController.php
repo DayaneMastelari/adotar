@@ -98,7 +98,7 @@ class PetsController extends AppController {
 
     public function adotados() {
         $fields = array('Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'Pet.foto', 'Pet.adotado');
-        $conditions = array('Pet.adotado' => 'Sim');
+        $conditions = array('Pet.adotado' => 'Sim', 'Pet.perdido' => 'Não');
         $pets = $this->Pet->find('all', compact('fields', 'conditions'));
         $this->set('pets', $pets); 
     }

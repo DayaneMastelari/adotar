@@ -22,7 +22,7 @@ echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
     $this->Html->tag('section', 
         $this->Html->div('container',
             $this->Html->tag('h1', 'Animais Adotados', array('class' => 'jumbotron-heading')) .
-            $this->Html->para('lead text-muted', 'Animais que encontraram um novo lar e agora são felizes')
+            $this->Html->para('lead text-muted', 'Animais que encontraram um novo lar e agora são felizes com sua nova família!')
         ), 
         array('class' => 'jumbotron text-center')
     )
