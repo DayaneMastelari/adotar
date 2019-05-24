@@ -1,6 +1,7 @@
 <?php
 $view = '';
 foreach ($pets as $pet) {
+    echo $this->Form->hidden('Pet.encontrado');
     $view .= $this->Html->div('col-md-4',
         $this->Html->div('card mb-4 shadow-sm',
             $this->Html->image($pet['Pet']['foto'], array('class' => 'bd-placeholder-img card-img-top')) .
@@ -9,7 +10,13 @@ foreach ($pets as $pet) {
                 $this->Html->para('card-text', 'Porte: ' . $pet['Pet']['porte']) .
                 $this->Html->para('card-text', 'Castrado: ' . $pet['Pet']['castrado']) .
                 $this->Html->div('d-flex justify-content-between align-items-center',
-                    $this->Html->link('Mais informações', '/pets/view/' . $pet['Pet']['id'], array('class' => 'btn btn-block btn-primary'))
+                    $this->Html->div('btn-group',
+                        $this->Html->link('Encontrado', '/pets/encontrado', array('class' => 'btn btn-outline-primary')) .
+                        $this->Html->link('Alterar', '/pets/edit/' . $pet['Pet']['id'], array('class' => 'btn btn-outline-secondary')) .
+                        $this->Html->link('Excluir', '/pets/delete/' . $pet['Pet']['id'], array('class' => 'btn btn-outline-danger'))
+
+                    )
+                    
                 )
             )
         )
@@ -21,16 +28,16 @@ echo $this->Flash->render('success');
 echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
     $this->Html->tag('section', 
         $this->Html->div('container',
-            $this->Html->tag('h1', 'Encontre seu novo amigo', array('class' => 'jumbotron-heading')) .
-            $this->Html->para('lead text-muted', 'Ao adotar, você ajuda a reduzir o número de cães e gatos abandonados. Os animais de rua já passaram por muito sofrimento e tudo o que precisam é de um lar para serem felizes de verdade!').
-            $this->Html->para('', 
-                $this->Html->link('Cadastre-se', '/usuarios/add', array('class' => 'btn btn-primary btn-lg mt-4'))
-            )
+            $this->Html->tag('h1', 'Meus animais perdidos', array('class' => 'jumbotron-heading'))
         ), 
         array('class' => 'jumbotron text-center')
     )
 );
 echo $this->Html->div('row', $view);
-?>
 
-<p class="lead text-muted">
+$this->Js->buffer('$(".form-error").addClass("is-invalid")');
+if($this->request->is('ajax')) {
+    echo $this->Js->writeBuffer();
+}
+
+?>

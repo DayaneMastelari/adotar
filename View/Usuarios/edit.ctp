@@ -120,11 +120,14 @@ $form .= $this->Js->link('Cancela', '/', array('class' => 'btn btn-secondary', '
 $form .= $this->Form->end();
 
 echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
-    $this->Html->tag('h1', 'Alterar cadastro', array(
-        'class' => 'jumbotron-heading',
-    )) .
-    $form
+    $this->Html->tag('section', 
+        $this->Html->div('container',
+            $this->Html->tag('h1', 'Alterar Cadastro', array('class' => 'jumbotron-heading'))
+        ), 
+        array('class' => 'jumbotron text-center')
+    )
 );
+echo $form;
 
 $this->Js->buffer('$(".form-error").addClass("is-invalid")');
 if($this->request->is('ajax')) {

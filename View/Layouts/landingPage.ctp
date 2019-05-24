@@ -23,42 +23,37 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <?php echo $this->Html->link('Cadastrar Pet', '/pets/add', array('class' => 'nav-link nav-color-text'));?>                          
+                        <?php echo $this->Html->link('Doar', '/pets/add', array('class' => 'nav-link nav-color-text'));?>                          
                     </li> 
                     <li class="nav-item">
                         <?php echo $this->Html->link('Adotados', '/', array('class' => 'nav-link nav-color-text'));?>
                     </li> 
                     <li class="nav-item">
                         <?php echo $this->Html->link('Perdidos', '/pets/perdidos', array('class' => 'nav-link nav-color-text'));?>
-                    </li>                                        
+                    </li>
+                    <li class="nav-item">
+                        <?php echo $this->Html->link('Ongs', '/usuarios', array('class' => 'nav-link nav-color-text'));?>
+                    </li>                                                          
                 </ul>
-                <div class="dropdown" >
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Perfil
-                      </button>
-                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Editar perfil</a>
-                        <a class="dropdown-item" href="#">Meus animais cadastrados</a>
-                        <a class="dropdown-item" href="#">Sair</a>
-                      </div>
-                    </div>                
+
+                <?php
+                    echo $this->Html->div('dropdown',
+                            $this->Form->button('Perfil', array('class' => 'btn btn-secondary dropdown-toggle', 'data-toggle' => 'dropdown')) .
+                            $this->Html->div('dropdown-menu dropdown-menu-right',
+                                $this->Html->link('Editar Perfil', '/usuarios/edit/' . AuthComponent::user('id'), array('class' => 'dropdown-item')) .
+                                $this->Html->link('Meus animais cadastrados', '/pets/meus_pets_cadastrados/' . AuthComponent::user('id'), array('class' => 'dropdown-item')) .
+                                $this->Html->link('Meus animais perdidos', '/pets/meus_pets_perdidos/' . AuthComponent::user('id'), array('class' => 'dropdown-item')) .
+                                $this->Html->link('sair', '/usuarios/logout', array('class' => 'dropdown-item'))
+                            )                            
+                    );                    
+                ?>               
             </div>
+            
         </nav>
 
         <main role="main" class="container" background-color="#0d0d0d">
-        <div class="my-3 p-3 bg-white rounded shadow-sm">
-            <section class="jumbotron text-center">
-            <div class="container">
-                <h1 class="jumbotron-heading">Encontre seu novo amigo</h1>
-                <p class="lead text-muted">Ao adotar, você ajuda a reduzir o número de cães e gatos abandonados. Os animais de rua já passaram por muito sofrimento e tudo o que precisam é de um lar para serem felizes de verdade!</p>      
-            </div>
-            <p>
-                <?php echo $this->Html->link('Cadastre-se', '/usuarios/add', array('class' => 'btn btn-primary btn-lg mt-4')) ?>             
-            </p>
-            </section>
-        </div>
             <?php 
                 echo $this->Flash->render();
                 echo $this->fetch('content');                 

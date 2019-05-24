@@ -21,7 +21,7 @@ $form .= $this->Html->div('form-row mt-4',
         'type' => 'select',
         'options' => array(
             'ong' => 'Ong',
-            'usuario' => 'Amante dos animais'
+            'usuario' => 'Amante de animais'
         ),
         'required' => false,
         'label' => false,
@@ -146,31 +146,19 @@ $form .= $this->Html->div('form-row',
     ))
 );
 
-/*<div class="my-3 p-3 bg-white rounded shadow-sm">
-            <section class="jumbotron text-center">
-            <div class="container">
-                <h1 class="jumbotron-heading">Encontre seu novo amigo</h1>
-                <p class="lead text-muted">Ao adotar, você ajuda a reduzir o número de cães e gatos abandonados. Os animais de rua já passaram por muito sofrimento e tudo o que precisam é de um lar para serem felizes de verdade!</p>      
-            </div>
-            <p>
-                <?php echo $this->Html->link('Cadastre-se', '/usuarios/add', array('class' => 'btn btn-primary btn-lg mt-4')) ?>             
-            </p>
-            </section>
-        </div>*/
-
-
-
 $form .= $this->Form->submit('Gravar', array('type' => 'submit', 'div' => false, 'class' => 'btn btn-success mr-2', 'update' => '#content'));
 $form .= $this->Js->link('Cancela', '/', array('class' => 'btn btn-secondary', 'update' => '#content'));
 $form .= $this->Form->end();
 
-
 echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
-    $this->Html->tag('h1', 'Cadastro', array(
-        'class' => 'jumbotron-heading',
-    )) .
-    $form
+    $this->Html->tag('section', 
+        $this->Html->div('container',
+            $this->Html->tag('h1', 'Cadastro', array('class' => 'jumbotron-heading'))
+        ), 
+        array('class' => 'jumbotron text-center')
+    )
 );
+echo $form;
 
 $this->Js->buffer('$(".form-error").addClass("is-invalid")');
 if($this->request->is('ajax')) {

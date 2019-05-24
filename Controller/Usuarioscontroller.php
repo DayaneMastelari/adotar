@@ -3,16 +3,17 @@ App::uses('AppController', 'Controller');
 
 class UsuariosController extends AppController {
 
-    public $layout = 'bootstrap';
+    public $layout = 'landingPage';
     public $helper = array('Js' => array('Jquerry'));
 
     public function beforeFilter() {
         $this->Auth->allow(array('login', 'logout', 'add'));
+        $this->Auth->mapActions(['read' => ['pets_ong']]);
     }
 
     public $paginate = array(
-        'fields' => array('Usuario.id', 'Usuario.nome', 'Usuario.login', 'Usuario.email'),
-        'conditions' => array(),
+        'fields' => array('Usuario.id', 'Usuario.nome', 'Usuario.telefone', 'Usuario.email'),
+        'conditions' => array('Usuario.tipo_usuario' => 'Ong'),
         'order' => array('Usuario.nome' => 'asc'),
         'limit' => 10
     );
@@ -52,7 +53,7 @@ class UsuariosController extends AppController {
     }
 
     public function view($id = null){
-        $fields = array('Usuario.id', 'Usuario.nome', 'Usuario.celular', 'Usuario.cpf','Usuario.nascimento', 'Usuario.estado', 'Usuario.cep', 'Usuario.cidade', 'Usuario.bairro', 'Usuario.endereco', 'Usuario.email', 'Usuario.senha',);
+        $fields = array('Usuario.id', 'Usuario.nome', 'Usuario.celular', 'Usuario.cpf','Usuario.nascimento', 'Usuario.estado', 'Usuario.cep', 'Usuario.cidade', 'Usuario.bairro', 'Usuario.endereco', 'Usuario.email');
         $conditions = array('Usuario.id' => $id);
         $this->request->data = $this->Usuario->find('first', compact('fields', 'conditions'));
     }
@@ -76,6 +77,18 @@ class UsuariosController extends AppController {
     public function logout() {
         $this->Auth->logout();
         $this->redirect('/login');
+    }
+
+    public function pets_ong($id) {     
+        $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'Pet.foto', 'Pet.encontrado');
+        $conditions = array('Pet.usuario_id' => $id, 'Pet.perdido' => 'Não', 'Pet.adotado' => null);
+        $pets = $this->Usuario->Pet->find('all', compact('fields', 'conditions'));
+        $this->set('pets', $pets); 
+
+        $fields = array('Usuario.nome', 'Usuario.telefone','Usuario.estado', 'Usuario.cep', 'Usuario.cidade', 'Usuario.bairro', 'Usuario.endereco', 'Usuario.email');
+        $conditions = array('Usuario.id' => $id);
+        $this->request->data = $this->Usuario->find('first', compact('fields', 'conditions'));
+        
     }
 }
 

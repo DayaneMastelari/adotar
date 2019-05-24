@@ -3,12 +3,15 @@ App::uses('AppController', 'Controller');
 
 class PetsController extends AppController {
 
-    public $layout = 'bootstrap';
+    public $layout = 'landingPage';
     public $helper = array('Js' => array('Jquerry'));
 
     public function beforeFilter() {
         $this->Auth->allow(array('view'));
         $this->Auth->mapActions(['read' => ['perdidos']]);
+        $this->Auth->mapActions(['update' => ['meus_pets_cadastrados']]);
+        $this->Auth->mapActions(['read' => ['meus_pets_perdidos']]);
+        $this->Auth->mapActions(['update' => ['encontrado']]);
     }
 
     /*public $paginate = array(
@@ -19,7 +22,6 @@ class PetsController extends AppController {
     );*/
 
     public function index() {
-        $this->layout = 'landingPage';
         $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'Pet.foto');
         $conditions = array('Pet.perdido' => 'Não');
         $pets = $this->Pet->find('all', compact('fields', 'conditions'));
@@ -56,8 +58,7 @@ class PetsController extends AppController {
             $fields = array('Pet.id', 'Pet.nome', 'Pet.sexo', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'Pet.especie', 'Pet.idade', 'Pet.meses_anos', 'Pet.perdido', 'Pet.caracteristicas');
             $conditions = array('Pet.id' => $id);
             $this->request->data = $this->Pet->find('first', compact('fields', 'conditions'));
-        }
-        
+        }        
     }
 
     public function delete($id) {
@@ -73,16 +74,37 @@ class PetsController extends AppController {
     }
 
     public function perdidos() {
-        $this->layout = 'perdidos';
-        $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'pet.foto');
+        $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'Pet.foto');
         $conditions = array('Pet.perdido' => 'Sim');
         $pets = $this->Pet->find('all', compact('fields', 'conditions'));
-        /*$fields = array('Usuario.id', 'Usuario.nome', 'Usuario.telefone', 'Usuario.email');
-        $conditions = array('Pet.usuario_id' => 'Usuario.id');
-        $pets .= $this->Pet->find('first', compact('fields', 'conditions'));*/
 
         $this->set('pets', $pets);
     }
+
+    public function meus_pets_perdidos($id) {
+        $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'Pet.foto', 'Pet.encontrado');
+        $conditions = array('Pet.usuario_id' => $id, 'Pet.perdido' => 'Sim', 'Pet.encontrado' => null);
+        $pets = $this->Pet->find('all', compact('fields', 'conditions'));
+        $this->set('pets', $pets);        
+    }
+
+    public function meus_pets_cadastrados($id) {
+        $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'Pet.foto', 'Pet.encontrado');
+        $conditions = array('Pet.usuario_id' => $id, 'Pet.perdido' => 'Não', 'Pet.adotado' => null);
+        $pets = $this->Pet->find('all', compact('fields', 'conditions'));
+        $this->set('pets', $pets);        
+    }
+
+    public function encontrado() {
+        pr($this->request->data);
+        if(!empty($this->request->data)){    
+            $this->request->data['Pet']['encontrado'] = 'Sim';
+            if($this->Pet->save($this->request->data)){
+                $this->Flash->bootstrap('Pet marcado como encontrado', array('key' => 'success'));
+                $this->redirect('/');
+            }                               
+        }
+    }  
 }
 
 ?>

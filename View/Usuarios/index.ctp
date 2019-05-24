@@ -26,16 +26,16 @@ $detalhe = array();
 foreach($usuarios as $usuario){
     $editLink = $this->Js->link('Alterar', '/usuarios/edit/' . $usuario['Usuario']['id'], array('update' => '#content'));
     $deleteLink = $this->Js->link('Excluir', '/usuarios/delete/' . $usuario['Usuario']['id'], array('update' => '#content'));
-    $viewLink = $this->Js->link($usuario['Usuario']['nome'], '/usuarios/view/' . $usuario['Usuario']['id'], array('update' => '#content'));
+    $viewLink = $this->Js->link($usuario['Usuario']['nome'], '/usuarios/pets_ong/' . $usuario['Usuario']['id'], array('update' => '#content'));
     $detalhe[] = array(
         $viewLink,
-        $usuario['Usuario']['login'],
+        $usuario['Usuario']['telefone'],
         $usuario['Usuario']['email'],
         $editLink . ' ' . $deleteLink
     );
 }
 
-$titulos = array('Nome', 'Login', 'Email', ' ');
+$titulos = array('Nome', 'Telefone', 'Email', ' ');
 $header = $this->Html->tableHeaders($titulos);
 $body = $this->Html->tableCells($detalhe);
 

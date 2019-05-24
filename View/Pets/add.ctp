@@ -143,11 +143,14 @@ $form .= $this->Js->link('Voltar', '/', array('class' => 'btn btn-secondary', 'u
 $form .= $this->Form->end();
 
 echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
-    $this->Html->tag('h1', 'Cadastro de Pet', array(
-        'class' => 'jumbotron-heading',
-    )) .
-    $form
+    $this->Html->tag('section', 
+        $this->Html->div('container',
+            $this->Html->tag('h1', 'Cadastrar Pet', array('class' => 'jumbotron-heading'))
+        ), 
+        array('class' => 'jumbotron text-center')
+    )
 );
+echo $form;
 
 $this->Js->buffer('$(".form-error").addClass("is-invalid")');
 if($this->request->is('ajax')) {
