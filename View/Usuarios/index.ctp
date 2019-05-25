@@ -24,7 +24,7 @@ $filtroBar = $this->Html->div('row mb-4 mt-4',
 );
 $detalhe = array();
 foreach($usuarios as $usuario){
-    $editLink = $this->Js->link('Alterar', '/usuarios/edit/' . $usuario['Usuario']['id'], array('update' => '#content'));
+    $viewLink = $this->Js->link($usuario['Usuario']['nome'], '/usuarios/pets_ong/' . $usuario['Usuario']['id'], array('update' => '#content'));
     $detalhe[] = array(
         $viewLink,
         $usuario['Usuario']['telefone'],

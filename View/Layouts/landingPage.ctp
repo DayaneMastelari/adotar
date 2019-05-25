@@ -45,7 +45,7 @@
                                 $this->Html->link('Editar Perfil', '/usuarios/edit/' . AuthComponent::user('id'), array('class' => 'dropdown-item')) .
                                 $this->Html->link('Meus animais cadastrados', '/pets/meus_pets_cadastrados/' . AuthComponent::user('id'), array('class' => 'dropdown-item')) .
                                 $this->Html->link('Meus animais perdidos', '/pets/meus_pets_perdidos/' . AuthComponent::user('id'), array('class' => 'dropdown-item')) .
-                                $this->Html->link('sair', '/usuarios/logout', array('class' => 'dropdown-item'))
+                                $this->Html->link('Sair', '/usuarios/logout', array('class' => 'dropdown-item'))
                             )                            
                     );                    
                 ?>               
