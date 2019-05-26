@@ -28,4 +28,8 @@ echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
     )
 );
 echo $this->Html->div('row', $view);
+
+if($this->request->is('ajax')) {
+    echo $this->Js->writeBuffer();
+}
 ?>

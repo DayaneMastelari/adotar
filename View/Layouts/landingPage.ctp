@@ -37,23 +37,26 @@
                         <?php echo $this->Html->link('Ongs', '/usuarios', array('class' => 'nav-link nav-color-text'));?>
                     </li>                                                          
                 </ul>
-
                 <?php
-                    echo $this->Html->div('dropdown',
+                    if (AuthComponent::user('id')) {
+                        echo $this->Html->div('dropdown',
                             $this->Form->button('Perfil', array('class' => 'btn btn-secondary dropdown-toggle', 'data-toggle' => 'dropdown')) .
                             $this->Html->div('dropdown-menu dropdown-menu-right',
-                                $this->Html->link('Editar Perfil', '/usuarios/edit/' . AuthComponent::user('id'), array('class' => 'dropdown-item')) .
-                                $this->Html->link('Meus animais cadastrados', '/pets/meus_pets_cadastrados/' . AuthComponent::user('id'), array('class' => 'dropdown-item')) .
-                                $this->Html->link('Meus animais perdidos', '/pets/meus_pets_perdidos/' . AuthComponent::user('id'), array('class' => 'dropdown-item')) .
+                                $this->Js->link('Editar Perfil', '/usuarios/edit/' . AuthComponent::user('id'), array('class' => 'dropdown-item', 'update' => '#content')) .
+                                $this->Js->link('Meus animais cadastrados', '/pets/meus_pets_cadastrados/' . AuthComponent::user('id'), array('class' => 'dropdown-item', 'update' => '#content')) .
+                                $this->Js->link('Meus animais perdidos', '/pets/meus_pets_perdidos/' . AuthComponent::user('id'), array('class' => 'dropdown-item', 'update' => '#content')) .
                                 $this->Html->link('Sair', '/usuarios/logout', array('class' => 'dropdown-item'))
                             )                            
-                    );                    
+                        );
+                    } else {
+                        echo $this->Html->link('Login', '/usuarios/login', array('class' => 'btn btn-secondary'));                        
+                    }
                 ?>               
             </div>
             
         </nav>
 
-        <main role="main" class="container" background-color="#0d0d0d">
+        <main role="main" class="container" background-color="#0d0d0d" id="content">
             <?php 
                 echo $this->Flash->render();
                 echo $this->fetch('content');                 
@@ -61,7 +64,8 @@
         </main>
         <?php 
             echo $this->Html->script('jquery-3.4.1.min.js');
-            echo $this->Html->script('bootstrap.bundle.min.js');            
+            echo $this->Html->script('bootstrap.bundle.min.js');
+            echo $this->Js->writeBuffer();              
         ?>        
     </body>
 </html>
