@@ -70,9 +70,11 @@ class PetsController extends AppController {
     }
 
     public function view($id = null) {
-        $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'pet.foto');
+        $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado', 'Pet.vacinado', 'Pet.foto', 'Pet.sexo', 'Pet.idade', 'Pet.meses_anos');
         $conditions = array('Pet.id' => $id);
-        $pets = $this->Pet->find('first', compact('fields', 'conditions'));
+        $pet = $this->Pet->find('first', compact('fields', 'conditions'));
+
+        $this->set('pet', $pet);
     }
 
     public function perdidos() {
