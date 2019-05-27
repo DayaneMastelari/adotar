@@ -13,7 +13,7 @@ class PetsController extends AppController {
         $this->Auth->mapActions(['read' => ['adotados']]);
         $this->Auth->mapActions(['read' => ['meus_pets_perdidos']]);
         $this->Auth->mapActions(['update' => ['meus_pets_cadastrados']]);        
-        $this->Auth->mapActions(['update' => ['encontrado']]);        
+        $this->Auth->mapActions(['update' => ['encontrado']]);      
     }
 
     /*public $paginate = array(
