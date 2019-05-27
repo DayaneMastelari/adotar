@@ -17,6 +17,14 @@ class Usuario extends AppModel {
         }
         return true;
     }
+
+    public $validate = array(
+        'nome' => array(
+            'notBlank' => array('rule' => 'notBlank', 'messagem' => 'Informe o Nome ou Razão Social'),
+            'minLength' => array('rule' => array('minLength', '3'), 'message' => 'Informe pelo menos 3 caracteres'),
+            'SomenteLetras' => array('rule' => array('custom', '/A-Za-zÀ-ú/'), 'message' => 'Please enter an infinite number.')
+        )
+    );
     
 }
 

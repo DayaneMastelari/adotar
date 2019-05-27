@@ -17,7 +17,7 @@ class UsuarioFixture extends CakeTestFixture {
                 'cep' => '17-10-393', 
                 'cidade' => 'Curitiba',
                 'bairro' => 'Jardim Floresta',
-                'endereço' => '31 de Marco, 25',
+                'endereco' => '31 de Marco, 25',
                 'email' => 'dayane.mastelari@gmail.com',
                 'login' => 'dayane',
                 'senha' => '1234'

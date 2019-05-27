@@ -84,7 +84,7 @@ class DATABASE_CONFIG {
 		'login' => 'root',
 		'password' => '',
 		'database' => 'adotar',
-		'prefix' => '',
+		'prefix' => 'test_',
 		'encoding' => 'utf8',
 	);
 }
