@@ -7,8 +7,7 @@ class PetsController extends AppController {
     public $helper = array('Js' => array('Jquerry'));
 
     public function beforeFilter() {
-        $this->Auth->allow(array('index', 'view', 'perdidos', 'adotados', 'ongs'));
-        $this->Auth->allow(array('view'));
+        $this->Auth->allow(array('index', 'perdidos', 'adotados', 'ongs', 'view'));
         $this->Auth->mapActions(['read' => ['perdidos']]);
         $this->Auth->mapActions(['read' => ['adotados']]);
         $this->Auth->mapActions(['read' => ['meus_pets_perdidos']]);

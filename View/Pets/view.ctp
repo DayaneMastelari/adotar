@@ -99,6 +99,13 @@ echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
 );
 echo $this->Html->div('row', $view);
 echo $footer;
+echo $this->Js->link('Voltar', '/', array('class' => 'btn btn-secondary mb-10', 'update' => '#content'));
+
+$this->Js->buffer('$(".form-error").addClass("is-invalid")');
+if($this->request->is('ajax')) {
+    echo $this->Js->writeBuffer();
+}
+
 ?>
 
 
