@@ -44,7 +44,7 @@ $view .= $this->Html->div('col-md-4',
     $this->Html->div('media text-muted pt-3',
         $this->Html->para('media-body pb-3 mb-0 small lh-125 border-bottom border-gray',
             $this->Html->tag('strong', 'Telefone', array('class' => 'd-block text-gray-dark')) .
-            '(45)64156475'
+            '(45)'
         )
     ) .
     $this->Html->div('media text-muted pt-3',
