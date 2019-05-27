@@ -7,6 +7,7 @@ class PetsController extends AppController {
     public $helper = array('Js' => array('Jquerry'));
 
     public function beforeFilter() {
+        $this->Auth->allow(array('index', 'view', 'perdidos', 'adotados', 'ongs'));
         $this->Auth->allow(array('view'));
         $this->Auth->mapActions(['read' => ['perdidos']]);
         $this->Auth->mapActions(['read' => ['adotados']]);
@@ -69,9 +70,15 @@ class PetsController extends AppController {
     }
 
     public function view($id = null) {
-        $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'pet.foto');
+    $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado', 'Pet.vacinado', 'Pet.foto', 'Pet.sexo', 'Pet.idade', 'Pet.meses_anos', 'Pet.usuario_id'/*, 'Usuario.id', 'Usuario.nome', 'Usuario.telefone', 'Usuario.email'*/);
         $conditions = array('Pet.id' => $id);
-        $pets = $this->Pet->find('first', compact('fields', 'conditions'));
+        $pet = $this->Pet->find('first', compact('fields', 'conditions'));
+        $this->set('pet', $pet);
+
+        /*$fields = array('Usuario.id', 'Usuario.nome', 'Usuario.email', 'Usuario.telefone', 'Pet.usuario_id');
+        $conditions = array('Usuario.id' => 'Pet.usuario_id');
+        $usuario = $this->Pet->Usuario->find('first', compact('fields', 'conditions'));
+        $this->set('usuario', $usuario);*/
     }
 
     public function perdidos() {

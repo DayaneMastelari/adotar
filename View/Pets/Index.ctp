@@ -18,18 +18,30 @@ foreach ($pets as $pet) {
 echo $this->Flash->render('warning'); 
 echo $this->Flash->render('success');
 
-echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
-    $this->Html->tag('section', 
-        $this->Html->div('container',
+if (AuthComponent::user('id')) {
+    echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
+        $this->Html->tag('section', 
+            $this->Html->div('container',
             $this->Html->tag('h1', 'Encontre seu novo amigo', array('class' => 'jumbotron-heading')) .
-            $this->Html->para('lead text-muted', 'Ao adotar, você ajuda a reduzir o número de cães e gatos abandonados. Os animais de rua já passaram por muito sofrimento e tudo o que precisam é de um lar para serem felizes de verdade!').
-            $this->Html->para('', 
-                $this->Html->link('Cadastre-se', '/usuarios/add', array('class' => 'btn btn-primary btn-lg mt-4'))
-            )
-        ), 
-        array('class' => 'jumbotron text-center')
-    )
-);
+            $this->Html->para('lead text-muted', 'Ao adotar, você ajuda a reduzir o número de cães e gatos abandonados. Os animais de rua já passaram por muito sofrimento e tudo o que precisam é de um lar para serem felizes de verdade!')
+            ), 
+            array('class' => 'jumbotron text-center')
+        )
+    );    
+} else {
+    echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
+        $this->Html->tag('section', 
+            $this->Html->div('container',
+                $this->Html->tag('h1', 'Encontre seu novo amigo', array('class' => 'jumbotron-heading')) .
+                $this->Html->para('lead text-muted', 'Ao adotar, você ajuda a reduzir o número de cães e gatos abandonados. Os animais de rua já passaram por muito sofrimento e tudo o que precisam é de um lar para serem felizes de verdade!').
+                $this->Html->para('',
+                    $this->Html->link('Cadastre-se', '/usuarios/add', array('class' => 'btn btn-primary btn-lg mt-4'))
+                )
+            ), 
+            array('class' => 'jumbotron text-center')
+        )
+    );
+}
 echo $this->Html->div('row', $view);
 ?>
 

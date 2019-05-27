@@ -7,7 +7,10 @@ foreach ($pets as $pet) {
             $this->Html->div('card-body',
                 $this->Html->para('card-text', 'Nome: ' . $pet['Pet']['nome']) .
                 $this->Html->para('card-text', 'Porte: ' . $pet['Pet']['porte']) .
-                $this->Html->para('card-text', 'Castrado: ' . $pet['Pet']['castrado']) 
+                $this->Html->para('card-text', 'Castrado: ' . $pet['Pet']['castrado']) .
+                $this->Html->div('d-flex justify-content-between align-items-center',
+                    $this->Html->link('Mais informações', '/pets/view/' . $pet['Pet']['id'], array('class' => 'btn btn-block btn-primary'))
+                ) 
             )
         )
     );

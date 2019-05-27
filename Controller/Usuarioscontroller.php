@@ -9,7 +9,7 @@ class UsuariosController extends AppController {
     public function beforeFilter() {
         $this->Auth->allow(array('login', 'logout', 'add'));
         $this->Auth->mapActions(['read' => ['pets_ong']]);
-    }
+    }   
 
     public $paginate = array(
         'fields' => array('Usuario.id', 'Usuario.nome', 'Usuario.telefone', 'Usuario.email'),
@@ -53,7 +53,7 @@ class UsuariosController extends AppController {
     }
 
     public function view($id = null){
-        $fields = array('Usuario.id', 'Usuario.nome', 'Usuario.celular', 'Usuario.cpf','Usuario.nascimento', 'Usuario.estado', 'Usuario.cep', 'Usuario.cidade', 'Usuario.bairro', 'Usuario.endereco', 'Usuario.email');
+        $fields = array('Usuario.id', 'Usuario.nome', 'Usuario.telefone', 'Usuario.cpf','Usuario.nascimento', 'Usuario.estado', 'Usuario.cep', 'Usuario.cidade', 'Usuario.bairro', 'Usuario.endereco', 'Usuario.email');
         $conditions = array('Usuario.id' => $id);
         $this->request->data = $this->Usuario->find('first', compact('fields', 'conditions'));
     }
@@ -76,7 +76,7 @@ class UsuariosController extends AppController {
  
     public function logout() {
         $this->Auth->logout();
-        $this->redirect('/login');
+        $this->redirect('/login');        
     }
 
     public function pets_ong($id) {     
@@ -89,6 +89,10 @@ class UsuariosController extends AppController {
         $conditions = array('Usuario.id' => $id);
         $this->request->data = $this->Usuario->find('first', compact('fields', 'conditions'));
         
+    }
+
+    public function afterSave($create, $options = array()) {
+
     }
 }
 

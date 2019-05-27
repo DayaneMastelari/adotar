@@ -1,15 +1,10 @@
 <?php
-$novoButton = $this->Js->link('Novo', '/usuarios/add', array(
-    'class' => 'btn btn-success float-right', 
-    'update' => '#content'
-));
-
 $filtro = $this->Form->create('Usuarios', array('class' => 'form-inline'));
 $filtro .= $this->Form->input('Usuario.nome', array(
     'required' => false,
-    'label' => array('text' => 'Nome ou Razão Social', 'class' => 'sr-only'),
+    'label' => array('text' => 'Nome da Ong', 'class' => 'sr-only'),
     'class' => 'form-control mb-2 mr-sm-2',
-    'placeholder' => 'Nome ou Razão Social'
+    'placeholder' => 'Nome da Ong'
 ));
 $filtro .= $this->Js->submit('Filtrar', array(
     'type' => 'submit', 
@@ -19,12 +14,11 @@ $filtro .= $this->Js->submit('Filtrar', array(
 $filtro .= $this->Form->end();
 
 $filtroBar = $this->Html->div('row mb-4 mt-4',
-    $this->Html->div('col-md-6', $filtro) .
-    $this->Html->div('col-md-6', $novoButton)
+    $this->Html->div('col-md-6', $filtro)
 );
 $detalhe = array();
 foreach($usuarios as $usuario){
-    $editLink = $this->Js->link('Alterar', '/usuarios/edit/' . $usuario['Usuario']['id'], array('update' => '#content'));
+    $viewLink = $this->Js->link($usuario['Usuario']['nome'], '/usuarios/pets_ong/' . $usuario['Usuario']['id'], array('update' => '#content'));
     $detalhe[] = array(
         $viewLink,
         $usuario['Usuario']['telefone'],
@@ -58,7 +52,14 @@ $paginateBar = $this->Html->div('row',
 echo $this->Flash->render('warning'); 
 echo $this->Flash->render('success');
 
-echo $this->Html->tag('h1', 'Usuários Cadastradas');
+echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
+    $this->Html->tag('section', 
+        $this->Html->div('container',
+            $this->Html->tag('h1', 'Ongs Cadastradas', array('class' => 'jumbotron-heading'))
+        ), 
+        array('class' => 'jumbotron text-center')
+    )
+);
 echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
     $filtroBar .
     $this->Html->tag('table', $header . $body, array('class' => 'table table-hover'))
