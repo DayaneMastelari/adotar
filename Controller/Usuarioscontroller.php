@@ -9,7 +9,8 @@ class UsuariosController extends AppController {
     public function beforeFilter() {
         $this->Auth->allow(array('login', 'logout', 'add'));
         $this->Auth->mapActions(['read' => ['pets_ong']]);
-    }   
+    }
+
 
     public $paginate = array(
         'fields' => array('Usuario.id', 'Usuario.nome', 'Usuario.telefone', 'Usuario.email'),
@@ -37,6 +38,11 @@ class UsuariosController extends AppController {
                 $this->redirect('/usuarios');
             }
         }
+
+        $fields = array('Aro.id', 'Aro.alias');
+        $conditions = array('Aro.parent_id' => null);
+        $aros = $this->Acl->Aro->find('list', compact('fields', 'conditions'));
+        $this->set('aros', $aros);
     }
 
     public function edit($id = null){
@@ -89,10 +95,6 @@ class UsuariosController extends AppController {
         $conditions = array('Usuario.id' => $id);
         $this->request->data = $this->Usuario->find('first', compact('fields', 'conditions'));
         
-    }
-
-    public function afterSave($create, $options = array()) {
-
     }
 }
 

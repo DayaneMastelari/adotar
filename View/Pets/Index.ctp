@@ -16,7 +16,7 @@ if (AuthComponent::user('id')) {
                 $this->Html->tag('h1', 'Encontre seu novo amigo', array('class' => 'jumbotron-heading')) .
                 $this->Html->para('lead text-muted', 'Ao adotar, você ajuda a reduzir o número de cães e gatos abandonados. Os animais de rua já passaram por muito sofrimento e tudo o que precisam é de um lar para serem felizes de verdade!').
                 $this->Html->para('',
-                    $this->Js->link('Cadastre-se', '/usuarios/add', array('class' => 'btn btn-primary btn-lg mt-4'))
+                    $this->Js->link('Cadastre-se', '/usuarios/add', array('class' => 'btn btn-primary btn-lg mt-4', 'update' => '#content'))
                 )
             ), 
             array('class' => 'jumbotron text-center')

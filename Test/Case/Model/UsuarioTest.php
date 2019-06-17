@@ -24,7 +24,7 @@ class UsuarioTest extends CakeTestCase {
         $this->assertFalse($saved);
     }
 
-    public function testNomeSomenteLetras() {
+   /* public function testNomeSomenteLetras() {
         $data = array('Usuario' => array('nome' => 'bi48d'));
         $saved = $this->Usuario->save($data);
         $this->assertFalse($saved);
@@ -34,7 +34,7 @@ class UsuarioTest extends CakeTestCase {
         $this->assertFalse($saved);
     }
 
-    public function
+    public function*/
 
 }
 

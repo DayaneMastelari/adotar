@@ -17,12 +17,9 @@ $form .= $this->Html->div('form-row mt-4',
         'class' => 'form-control',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))
     )) .
-    $this->Form->input('Usuario.tipo_usuario', array(
+    $this->Form->input('Usuario.aro_parent_id', array(
         'type' => 'select',
-        'options' => array(
-            'ong' => 'Ong',
-            'usuario' => 'Amante de animais'
-        ),
+        'options' => $aros,
         'required' => false,
         'label' => false,
         'empty' => 'Me cadastrar como:',
