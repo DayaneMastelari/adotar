@@ -100,7 +100,7 @@ $form .= $this->Html->div('form-row',
         'label' => false,
         'error' => array('attributes' => array('class' => 'invalid-feedback')) 
     )) .
-    $this->Form->input('Pet.meses-anos', array(
+    $this->Form->input('Pet.meses_anos', array(
         'label' => false,
         'empty' => 'Idade em messes ou anos',
         'type' => 'select',

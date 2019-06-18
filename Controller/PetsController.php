@@ -41,6 +41,9 @@ class PetsController extends AppController {
                                
             }
         }
+
+        pr($this->request->data);
+        exit();
     }
 
     public function edit($id = null) {

@@ -73,7 +73,7 @@ if($pet['Pet']['perdido'] == 'Sim'){
         $this->Html->tag('section', 
             $this->Html->div('container',
                 $this->Html->tag('h1', 'Você me Encontrou?', array('class' => 'jumbotron-heading')).
-                $this->Html->para('lead text-muted', 'Se você me encontrou entre em contato com o meu dono, estou com muita saudade dele!')
+                $this->Html->para('lead text-muted', 'Se você me encontrou entre em contato com a minha família, estou com muita saudade deles!')
             ), 
             array('class' => 'jumbotron text-center')
         )
