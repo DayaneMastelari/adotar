@@ -14,7 +14,7 @@ class UsuariosController extends AppController {
 
     public $paginate = array(
         'fields' => array('Usuario.id', 'Usuario.nome', 'Usuario.telefone', 'Usuario.email'),
-        'conditions' => array('Usuario.tipo_usuario' => 'Ong'),
+        'conditions' => array('Usuario.aro_parent_id' => '2'),
         'order' => array('Usuario.nome' => 'asc'),
         'limit' => 10
     );
