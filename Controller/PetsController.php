@@ -108,10 +108,11 @@ class PetsController extends AppController {
     }
 
     public function encontrado($id = null) {
-        $this->request->data['Pet']['encontrado'] = 'Sim';
-        if($this->Pet->save($this->request->data)){
-            $this->Flash->bootstrap('Pet marcado como encontrado', array('key' => 'success'));
-            $this->redirect('/');
+        if(!empty($this->request->data)){
+            if($this->Pet->save($this->request->data)){
+                $this->Flash->bootstrap('Pet marcado como encontrado', array('key' => 'success'));
+                $this->redirect('/');
+            }
         }
     }
 
