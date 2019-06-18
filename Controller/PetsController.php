@@ -63,10 +63,16 @@ class PetsController extends AppController {
     }
 
     public function view($id = null) {
-    $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado', 'Pet.vacinado', 'Pet.foto', 'Pet.sexo', 'Pet.idade', 'Pet.meses_anos', 'Pet.caracteristicas', 'Pet.perdido', 'Pet.usuario_id'/*, 'Usuario.id', 'Usuario.nome', 'Usuario.telefone', 'Usuario.email'*/);
+        $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado', 'Pet.vacinado', 'Pet.foto', 'Pet.sexo', 'Pet.idade', 'Pet.meses_anos', 'Pet.caracteristicas', 'Pet.perdido', 'Pet.usuario_id'/*, 'Usuario.id', 'Usuario.nome', 'Usuario.telefone', 'Usuario.email'*/);
         $conditions = array('Pet.id' => $id);
         $pet = $this->Pet->find('first', compact('fields', 'conditions'));
         $this->set('pet', $pet);
+        $idUsuario = $pet['Pet']['usuario_id'];
+
+        $fields = array('Usuario.id', 'Usuario.nome', 'Usuario.telefone', 'Usuario.email');
+        $conditions = array('Usuario.id' => $idUsuario);
+        $usuario = $this->Pet->find('first', compact('fields', 'conditions'));
+        $this->set('usuario', $usuario);
     }
 
     public function perdidos() {
