@@ -41,9 +41,6 @@ class PetsController extends AppController {
                                
             }
         }
-
-        pr($this->request->data);
-        exit();
     }
 
     public function edit($id = null) {
@@ -88,14 +85,14 @@ class PetsController extends AppController {
 
     public function meus_pets_perdidos($id) {
         $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'Pet.foto', 'Pet.encontrado', 'Pet.adotado');
-        $conditions = array('Pet.usuario_id' => $id, 'Pet.perdido' => 'Sim', 'Pet.encontrado' => null);
+        $conditions = array('Pet.usuario_id' => $id, 'Pet.perdido' => 'Sim', 'Pet.encontrado' == null);
         $pets = $this->Pet->find('all', compact('fields', 'conditions'));
         $this->set('pets', $pets);        
     }
 
     public function meus_pets_cadastrados($id) {
         $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'Pet.foto', 'Pet.encontrado');
-        $conditions = array('Pet.usuario_id' => $id, 'Pet.perdido' => 'Não', 'Pet.adotado' => null);
+        $conditions = array('Pet.usuario_id' => $id, 'Pet.perdido' => 'Não', 'Pet.adotado' == null);
         $pets = $this->Pet->find('all', compact('fields', 'conditions'));
         $this->set('pets', $pets);        
     }
