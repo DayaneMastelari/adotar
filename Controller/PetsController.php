@@ -77,7 +77,7 @@ class PetsController extends AppController {
 
     public function perdidos() {
         $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'Pet.foto');
-        $conditions = array('Pet.perdido' => 'Sim');
+        $conditions = array('Pet.perdido' => 'Sim', 'Pet.encontrado IS NULL');
         $pets = $this->Pet->find('all', compact('fields', 'conditions'));
 
         $this->set('pets', $pets);
@@ -109,18 +109,22 @@ class PetsController extends AppController {
         if ($this->Pet->saveField('encontrado', 'Sim')){
             $this->Flash->bootstrap('Pet marcado como encontrado', array('key' => 'success'));
         }else{
-            $this->Flash->bootstrap('Pet marcado como encontrado', array('key' => 'danger'));
+            $this->Flash->bootstrap('Não foi possível marcar pet como encontrado', array('key' => 'warning'));
         }
-        $this->redirect('/');
+        $usuarioID = $this->Auth->user('id');
+        $this->redirect('/pets/meus_pets_perdidos/' . $usuarioID);
 
     }
-    
-    public function adotado($id){
-        $this->request->data['Pet']['adotado'] = 'Sim';
-        if($this->Pet->save($this->request->data)){
+
+    public function adotado($id = null){
+        $this->Pet->id = $id;
+        if ($this->Pet->saveField('adotado', 'Sim')){
             $this->Flash->bootstrap('Pet marcado como adotado', array('key' => 'success'));
-            $this->redirect('/');
-        }                               
+        }else{
+            $this->Flash->bootstrap('Não foi possível marcar pet como adotado', array('key' => 'warning'));
+        }
+        $usuarioID = $this->Auth->user('id');
+        $this->redirect('/pets/meus_pets_encontrados/' . $usuarioID);                           
     }
 }
 

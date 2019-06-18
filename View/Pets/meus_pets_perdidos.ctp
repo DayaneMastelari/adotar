@@ -33,6 +33,8 @@ echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
         array('class' => 'jumbotron text-center')
     )
 );
+echo $this->Flash->render('warning'); 
+echo $this->Flash->render('success');
 echo $this->Html->div('row', $view);
 
 $this->Js->buffer('$(".form-error").addClass("is-invalid")');

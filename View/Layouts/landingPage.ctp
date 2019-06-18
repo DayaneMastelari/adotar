@@ -50,7 +50,7 @@
                         );
                     } else {
                         echo $this->Html->link('Login', '/usuarios/login', array('class' => 'btn btn-secondary'));                        
-                    }
+                    }                    
                 ?>               
             </div>
             
