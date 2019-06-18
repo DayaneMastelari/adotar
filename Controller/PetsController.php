@@ -10,17 +10,11 @@ class PetsController extends AppController {
         $this->Auth->allow(array('index', 'perdidos', 'adotados', 'ongs', 'view'));
         $this->Auth->mapActions(['read' => ['perdidos']]);
         $this->Auth->mapActions(['read' => ['adotados']]);
-        $this->Auth->mapActions(['read' => ['meus_pets_perdidos']]);
+        $this->Auth->mapActions(['update' => ['meus_pets_perdidos']]);
         $this->Auth->mapActions(['update' => ['meus_pets_cadastrados']]);        
         $this->Auth->mapActions(['update' => ['encontrado']]);      
+        $this->Auth->mapActions(['update' => ['adotado']]);
     }
-
-    /*public $paginate = array(
-        'fields' => array('Pet.id', 'Pet.nome', 'Pet.castrado', 'Pet.vacinado', 'Pet.sexo'),
-        'conditions' => array(),
-        'order' => array('Usuario.nome' => 'asc'),
-        'limit' => 10
-    );*/
 
     public function index() {
         $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'Pet.foto');
@@ -69,15 +63,10 @@ class PetsController extends AppController {
     }
 
     public function view($id = null) {
-    $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado', 'Pet.vacinado', 'Pet.foto', 'Pet.sexo', 'Pet.idade', 'Pet.meses_anos', 'Pet.usuario_id'/*, 'Usuario.id', 'Usuario.nome', 'Usuario.telefone', 'Usuario.email'*/);
+    $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado', 'Pet.vacinado', 'Pet.foto', 'Pet.sexo', 'Pet.idade', 'Pet.meses_anos', 'Pet.caracteristicas', 'Pet.perdido', 'Pet.usuario_id'/*, 'Usuario.id', 'Usuario.nome', 'Usuario.telefone', 'Usuario.email'*/);
         $conditions = array('Pet.id' => $id);
         $pet = $this->Pet->find('first', compact('fields', 'conditions'));
         $this->set('pet', $pet);
-
-        /*$fields = array('Usuario.id', 'Usuario.nome', 'Usuario.email', 'Usuario.telefone', 'Pet.usuario_id');
-        $conditions = array('Usuario.id' => 'Pet.usuario_id');
-        $usuario = $this->Pet->Usuario->find('first', compact('fields', 'conditions'));
-        $this->set('usuario', $usuario);*/
     }
 
     public function perdidos() {
@@ -109,16 +98,22 @@ class PetsController extends AppController {
         $this->set('pets', $pets); 
     }
 
-    public function encontrado() {
-        pr($this->request->data);
-        if(!empty($this->request->data)){    
-            $this->request->data['Pet']['encontrado'] = 'Sim';
-            if($this->Pet->save($this->request->data)){
-                $this->Flash->bootstrap('Pet marcado como encontrado', array('key' => 'success'));
-                $this->redirect('/');
-            }                               
+    public function encontrado($id = null) {
+        $this->request->data['Pet']['encontrado'] = 'Sim';
+        if($this->Pet->save($this->request->data)){
+            $this->Flash->bootstrap('Pet marcado como encontrado', array('key' => 'success'));
+            $this->redirect('/');
         }
-    }  
+    }
+
+
+    public function adotado($id){
+        $this->request->data['Pet']['adotado'] = 'Sim';
+        if($this->Pet->save($this->request->data)){
+            $this->Flash->bootstrap('Pet marcado como adotado', array('key' => 'success'));
+            $this->redirect('/');
+        }                               
+    }
 }
 
 ?>

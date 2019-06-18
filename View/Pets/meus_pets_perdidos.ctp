@@ -11,7 +11,7 @@ foreach ($pets as $pet) {
                 $this->Html->para('card-text', 'Castrado: ' . $pet['Pet']['castrado']) .
                 $this->Html->div('d-flex justify-content-between align-items-center',
                     $this->Html->div('btn-group',
-                        $this->Html->link('Encontrado', '/pets/encontrado', array('class' => 'btn btn-outline-primary')) .
+                        $this->Html->link('Encontrado', '/pets/encontrado/' . $pet['Pet']['id'], array('class' => 'btn btn-outline-primary')) .
                         $this->Html->link('Alterar', '/pets/edit/' . $pet['Pet']['id'], array('class' => 'btn btn-outline-secondary')) .
                         $this->Html->link('Excluir', '/pets/delete/' . $pet['Pet']['id'], array('class' => 'btn btn-outline-danger'))
 

@@ -24,18 +24,6 @@ class UsuarioTest extends CakeTestCase {
         $this->assertFalse($saved);
     }
 
-   /* public function testNomeSomenteLetras() {
-        $data = array('Usuario' => array('nome' => 'bi48d'));
-        $saved = $this->Usuario->save($data);
-        $this->assertFalse($saved);
-
-        $data = array('Usuario' => array('nome' => 'Fabíola'));
-        $saved = $this->Usuario->save($data);
-        $this->assertFalse($saved);
-    }
-
-    public function*/
-
 }
 
 ?>
