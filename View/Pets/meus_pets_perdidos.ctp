@@ -39,5 +39,4 @@ $this->Js->buffer('$(".form-error").addClass("is-invalid")');
 if($this->request->is('ajax')) {
     echo $this->Js->writeBuffer();
 }
-
 ?>

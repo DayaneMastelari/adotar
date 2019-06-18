@@ -85,14 +85,14 @@ class PetsController extends AppController {
 
     public function meus_pets_perdidos($id) {
         $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'Pet.foto', 'Pet.encontrado', 'Pet.adotado');
-        $conditions = array('Pet.usuario_id' => $id, 'Pet.perdido' => 'Sim', 'Pet.encontrado' == null);
+        $conditions = array('Pet.usuario_id' => $id, 'Pet.perdido' => 'Sim', 'Pet.encontrado IS NULL');
         $pets = $this->Pet->find('all', compact('fields', 'conditions'));
-        $this->set('pets', $pets);        
+        $this->set('pets', $pets);         
     }
 
     public function meus_pets_cadastrados($id) {
         $fields = array('Pet.id', 'Pet.nome', 'Pet.porte', 'Pet.castrado','Pet.vacinado', 'Pet.foto', 'Pet.encontrado');
-        $conditions = array('Pet.usuario_id' => $id, 'Pet.perdido' => 'Não', 'Pet.adotado' == null);
+        $conditions = array('Pet.usuario_id' => $id, 'Pet.perdido' => 'Não', 'Pet.adotado IS NULL');
         $pets = $this->Pet->find('all', compact('fields', 'conditions'));
         $this->set('pets', $pets);        
     }
@@ -105,15 +105,16 @@ class PetsController extends AppController {
     }
 
     public function encontrado($id = null) {
-        if(!empty($this->request->data)){
-            if($this->Pet->save($this->request->data)){
-                $this->Flash->bootstrap('Pet marcado como encontrado', array('key' => 'success'));
-                $this->redirect('/');
-            }
+        $this->Pet->id = $id;
+        if ($this->Pet->saveField('encontrado', 'Sim')){
+            $this->Flash->bootstrap('Pet marcado como encontrado', array('key' => 'success'));
+        }else{
+            $this->Flash->bootstrap('Pet marcado como encontrado', array('key' => 'danger'));
         }
+        $this->redirect('/');
+
     }
-
-
+    
     public function adotado($id){
         $this->request->data['Pet']['adotado'] = 'Sim';
         if($this->Pet->save($this->request->data)){
